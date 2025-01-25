@@ -213,28 +213,28 @@
     <div style="width: 100%; border: 1px solid #515151;"></div>
     <table style="width: 100%; font-size: 14px;">
         <tr>
-            <td style="width: 50%; padding: 10px 10px 10px 0; vertical-align: top;">
+            <td style="width: 65%; padding: 10px 10px 10px 0; vertical-align: top;">
                 <table style="width: 100%; font-size: 14px;">
                     {% if payment_terms %}
                     <tr>
-                        <td style="font-weight: bold; width: 30%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Payment Terms :
                         </td>
-                        <td style="width: 70%;">
+                        <td style="width: 68%;">
                             {{payment_terms}}
                         </td>
                     </tr>
                     {% endif %}
                 </table>
             </td>
-            <td style="width: 50%; padding: 10px 10px 10px 0; vertical-align: top;">
+            <td style="width: 35%; padding: 10px 10px 10px 0; vertical-align: top;">
                 <table style="width: 100%; font-size: 14px;">
                     {% if customer_type %}
                     <tr>
-                        <td style="font-weight: bold; width: 30%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Customer Type :
                         </td>
-                        <td style="width: 70%;">
+                        <td style="width: 40%;">
                             {{customer_type}}
                         </td>
                     </tr>
@@ -318,7 +318,7 @@
             </td>
         </tr>
         {% for charge in charges %}
-        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | float %}
+        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | replace(' ', '') | int %}
         {% if not charge_value_number == 0 %}
         <tr>
             <td style="font-size: 16px; width: 55%; padding: 6px 0;">

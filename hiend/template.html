@@ -226,34 +226,34 @@
 
     <table style="width: 100%; font-size: 14px;">
         <tr>
-            <td style="width: 70%; padding: 10px 10px 10px 0; vertical-align: top;">
+            <td style="width: 65%; padding: 10px 10px 10px 0; vertical-align: top;">
                 <table style="width: 100%; font-size: 14px;">
                     {% if payment_terms %}
                     <tr>
-                        <td style="font-weight: bold; width: 25%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Payment Terms :
                         </td>
-                        <td style="width: 75%;">
+                        <td style="width: 68%;">
                             {{payment_terms}}
                         </td>
                     </tr>
                     {% endif %}
                     {% if written_for %}
                     <tr>
-                        <td style="font-weight: bold; width: 25%; ">
+                        <td style="font-weight: bold; width: 32%; ">
                             Written For :
                         </td>
-                        <td style="width: 75%; ">
+                        <td style="width: 68%; ">
                             {{written_for}}
                         </td>
                     </tr>
                     {% endif %}
                     {% if written_by %}
                     <tr>
-                        <td style="font-weight: bold; width: 25%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Written By:
                         </td>
-                        <td style="width: 75%; ">
+                        <td style="width: 68%; ">
                             {{written_by}}
                         </td>
                     </tr>
@@ -261,34 +261,34 @@
 
                 </table>
             </td>
-            <td style="width: 30%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
+            <td style="width: 35%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
                 <table style="width: 100%; font-size: 14px;">
                     {% if market_code %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Market Code:
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 40%;">
                             {{market_code}}
                         </td>
                     </tr>
                     {% endif %}
                     {% if ship_date %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Ship Date:
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 40%;">
                             {{ format_date(ship_date) }}
                         </td>
                     </tr>
                     {% endif %}
                     {% if cancel_date %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Cancel Date:
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 40%;">
                             {{ format_date(cancel_date) }}
                         </td>
                     </tr>
@@ -377,7 +377,7 @@
             </td>
         </tr>
         {% for charge in charges %}
-        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | float %}
+        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | replace(' ', '') | int %}
         {% if not charge_value_number == 0 %}
         <tr>
             <td style="font-size: 16px; width: 55%; padding: 6px 0;">

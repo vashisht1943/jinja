@@ -205,59 +205,58 @@
 
     <table style="width: 100%; font-size: 14px;">
         <tr>
-            <td style="width: 40%; padding: 10px 10px 10px 0; vertical-align: top;">
+            <td style="width: 65%; padding: 10px 10px 10px 0; vertical-align: top;">
                 <table style="width: 100%; font-size: 14px;">
                     {% if payment_terms %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Payment Terms :
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 68%;">
                             {{payment_terms}}
                         </td>
                     </tr>
                     {% endif %}
                     {% if order_source %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Order Source:
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 68%;">
                             {{order_source}}
                         </td>
                     </tr>
                     {% endif %}
                     {% if resale_number %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Resale Number :
                         </td>
-                        <td style=" width: 50%;">
+                        <td style=" width: 68%;">
                             {{resale_number}}
                         </td>
                     </tr>
                     {% endif %}
                 </table>
             </td>
-            <td style="width: 20%;"></td>
-            <td style="width: 40%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
+            <td style="width: 35%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
                 <table style="width: 100%; font-size: 14px;">
                     {% if ship_date %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Ship Date:
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 40%;">
                             {{ format_date(ship_date) }}
                         </td>
                     </tr>
                     {% endif %}
                     {% if cancel_date %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Cancel Date:
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 40%;">
                             {{ format_date(cancel_date) }}
                         </td>
                     </tr>
@@ -337,7 +336,7 @@
             </td>
         </tr>
         {% for charge in charges %}
-        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | float %}
+        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | replace(' ', '') | int %}
         {% if not charge_value_number == 0 %}
         <tr>
             <td style="font-size: 16px; width: 55%; padding: 6px 0;">

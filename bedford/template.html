@@ -224,34 +224,34 @@
 
     <table style="width: 100%; font-size: 14px;">
         <tr>
-            <td style="width: 40%; padding: 10px 10px 10px 0; vertical-align: top;">
+            <td style="width: 65%; padding: 10px 10px 10px 0; vertical-align: top;">
                 <table style="width: 100%; font-size: 14px;">
                     {% if payment_terms %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Payment Terms :
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 68%;">
                             {{payment_terms}}
                         </td>
                     </tr>
                     {% endif %}
                     {% if sales_rep %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Sales Rep :
                         </td>
-                        <td style=" width: 50%;">
+                        <td style=" width: 68%;">
                             {{sales_rep}}
                         </td>
                     </tr>
                     {% endif %}
                     {% if all_jinja_data['requested_ship date'] %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 32%;">
                             Requested Ship Date :
                         </td>
-                        <td style=" width: 50%;">
+                        <td style=" width: 68%;">
                             {{ format_date(all_jinja_data['requested_ship date']) }}
                         </td>
                     </tr>
@@ -259,25 +259,24 @@
 
                 </table>
             </td>
-            <td style="width: 20%;"></td>
-            <td style="width: 40%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
+            <td style="width: 35%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
                 <table style="width: 100%; font-size: 14px;">
                     {% if shipping_method %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Shipping Method :
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 40%;">
                             {{shipping_method}}
                         </td>
                     </tr>
                     {% endif %}
                     {% if shipping_terms %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Shipping Terms :
                         </td>
-                        <td style="width: 50%;">
+                        <td style="width: 40%;">
                             {{shipping_terms}}
                         </td>
                     </tr>
@@ -285,10 +284,10 @@
 
                     {% if freight_terms %}
                     <tr>
-                        <td style="font-weight: bold; width: 50%;">
+                        <td style="font-weight: bold; width: 60%;">
                             Freight Terms :
                         </td>
-                        <td style=" width: 50%;">
+                        <td style=" width: 40%;">
                             {{freight_terms}}
                         </td>
                     </tr>
@@ -379,7 +378,7 @@
             </td>
         </tr>
         {% for charge in charges %}
-        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | float %}
+        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | replace(' ', '') | int %}
         {% if not charge_value_number == 0 %}
         <tr>
             <td style="font-size: 16px; width: 55%; padding: 6px 0;">
