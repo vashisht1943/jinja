@@ -24,73 +24,60 @@
         </tr>
     </table>
 
-    <table style="width: 100%;  font-size: 14px;">
-        <tr style="width: 100%;">
-            <td style="width: 15%; height: 100%; vertical-align: top;">
-                <div style="width: 100%; padding: 5px 2px 0px 0px; display: flex; justify-content: center; align-items: flex-start;">
-                    <img style="height: 0.6in; width: 1.7in; object-fit: cover;" alt="logo"
-                        src="https://ultronapi-g-p.sourcerer.tech/artifact/v1/file/34bcc46a-a27d-4983-bb1d-1852f6003b7b" />
-                </div>
-            </td>
+    <div style="font-size: 10px; font-family: Arial, sans-serif;"></div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <!-- Left Side (Logo + Address) -->
+                <td style="width: 70%; vertical-align: top;">
+                    <div style="display: flex; align-items: center; position: relative;">
+                        <img src="https://ultronapi-g-p.sourcerer.tech/artifact/v1/file/34bcc46a-a27d-4983-bb1d-1852f6003b7b" alt="logo" style="height: 60px; width: auto; margin-right: 10px;" />
+                        <p style="position: absolute; bottom: -18px; left: 65px; transform: translateX(50%);">{{ tenant_address }}</p>
+                    </div>
+                </td>
 
-            <td style=" width: 55%; vertical-align: top;">
-                <div style="display: flex; flex-direction: column;">
-                    <p style="font-size: 26px; font-weight: bold; margin: 0;">{{header}}</p>
-                    <p style="width: 50%; margin: 0; margin-top: 10px;">{{tenant_address}}</p>
-                </div>
-            </td>
-            <td style=" width: 30%; vertical-align: top;">
-                <table style="width: 100%; font-size: 14px;">
-                    <tr>
-                        <td>
-                            Date :
-                        </td>
-                        <td style="font-weight: bold; text-align: end; vertical-align: top;">
-                            {{all_document_data.created_at}}
-                        </td>
-                    </tr>
-                    {% if doc_type and system_id %}
-                    <tr>
-                        <td>
-                            {{doc_type}} :
-                        </td>
-                        <td style="font-weight: bold; text-align: end; vertical-align: top;">
-                            {{system_id}}
-                        </td>
-                    </tr>
-                    {% endif %}
-                    {% if po_number %}
-                    <tr>
-                        <td>
-                            PO Number :
-                        </td>
-                        <td style="font-weight: bold; text-align: end; vertical-align: top;">
-                            {{po_number}}
-                        </td>
-                    </tr>
-                    {% endif %}
-                    {% if doc_type %}
-                    <tr>
-                        <td>
-                            Doc Type:
-                        </td>
-                        <td style="font-weight: bold; text-align: end; vertical-align: top;">
-                            {{doc_type}}
-                        </td>
-                    </tr>
-                    {% endif %}
-                    {% if event %}
-                    <tr>
-                        <td>Event:</td>
-                        <td style="font-weight: bold; text-align: end; vertical-align: top;">
-                            {{event}}
-                        </td>
-                    </tr>
-                    {% endif %}
-                </table>
-            </td>
-        </tr>
-    </table>
+                <!-- Right Side (Details Table) -->
+                <td style="width: 30%; vertical-align: top; text-align: left;">
+                    <table style="font-size: 12px; width: 100%;">
+                        {% if all_document_data.created_at %}
+                        <tr>
+                            <td>Date :</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{ all_document_data.created_at }}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if doc_type and system_id %}
+                        <tr>
+                            <td>{{doc_type}}:</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{system_id}}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if po_number %}
+                        <tr>
+                            <td>PO Number :</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{po_number}}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if doc_type %}
+                        <tr>
+                            <td>Doc Type :</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{doc_type}}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if event %}
+                        <tr>
+                            <td>Event:</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{event}}</td>
+                        </tr>
+                        {% endif %}
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
 
     <div style="width: 100%; border: 1px solid #515151; margin-top: 10px;"></div>
 
