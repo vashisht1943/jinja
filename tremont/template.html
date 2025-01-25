@@ -1,0 +1,368 @@
+<style>
+    .no-break {
+        page-break-inside: avoid;
+        page-break-after: always;
+    }
+
+    * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+</style>
+
+<div>
+    {% macro format_date(date_string) %}
+    {% set year, month, day = date_string.split('-') %}
+    {{ month }}/{{ day }}/{{ year }}
+    {% endmacro %}
+
+    <!-- HEADER -->
+    <table style="width: 100%; font-size: 14px;">
+        <tr style="width: 100%;">
+            <td style=" width: 100%; text-align: center; vertical-align: top;">
+                <p style="font-size: 24px; font-weight: bold; margin-bottom: 15px;">SALES ORDER</p>
+            </td>
+        </tr>
+    </table>
+
+    <table style="width: 100%;  font-size: 14px;">
+        <tr style="width: 100%;">
+            <td style="width: 18%;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; width: 100%;">
+                    <img style="height: 0.8in; width: 1.9in;" alt="logo" src="{{img_logo}}" />
+                </div>
+            </td>
+            <td
+                style="width: 25%; vertical-align: center; display: flex;flex-direction: column; justify-content: center;">
+                <p style="font-size: 26px; font-weight: bold; margin: 6px 0; line-height: 20px;">{{header}}</p>
+                <p>{{ tenant_address|replace('\n', '<br>') }}</p>
+            </td>
+            <td style="width: 27%;"></td>
+            <td style="width: 30%; vertical-align: top;">
+                <table style="width: 100%; font-size: 14px;">
+                    <tr>
+                        <td style="width: 40%;">
+                            Date:
+                        </td>
+                        <td style="font-weight: bold; text-align: end; width: 60%;">
+                            {{ date }}
+                        </td>
+                    </tr>
+                    {% if doc_type %}
+                    <tr>
+                        <td style="width: 40%;">
+                            {{doc_type}}:
+                        </td>
+                        <td style="font-weight: bold; text-align: end; width: 60%;">
+                            {{system_id}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if doc_type %}
+                    <tr>
+                        <td style="width: 40%;">
+                            Doc Type:
+                        </td>
+                        <td style="font-weight: bold; text-align: end; width: 60%;">
+                            {{doc_type}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if po_number %}
+                    <tr>
+                        <td style="width: 40%;">
+                            PO number:
+                        </td>
+                        <td style="font-weight: bold; text-align: end; width: 60%;">
+                            {{po_number}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if buyer_details.sales_rep %}
+                    <tr>
+                        <td style="width: 40%;">
+                            Sales Rep:
+                        </td>
+                        <td style="font-weight: bold; text-align: end; width: 60%;">
+                            {{buyer_details.sales_rep}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #b4b4b4; margin-top: 10px;"></div>
+
+    <!-- BUYER DETAILS -->
+    <table style="width: 100%; font-size: 14px;">
+        <tr>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin:0; font-weight: bold;">{{buyer_name}}</p>
+                    <p style="margin:0; color: #515151;">{{buyer_contact_first_name}}
+                        {{buyer_contact_last_name}}</p>
+                    <p style="margin:0; color: #515151;">{{buyer_contact_designation}}</p>
+                    <p style="margin:0; color: #515151;">{{buyer_email}}</p>
+                    <p style="margin:0; color: #515151;">{{buyer_phone}}</p>
+                </div>
+            </td>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin:0; font-weight: bold;">Bill To</p>
+                    <p style="margin:0; color: #515151;">{{billing_address.first_name}}
+                        {{billing_address.last_name}}</p>
+                    <p style="margin:0; color: #515151;">{{billing_address.country_code}}
+                        {{billing_address.phone}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{billing_address.street_address}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{billing_address.city}},
+                        {{billing_address.state}},
+                        {{billing_address.pincode}}</p>
+                    <p style="margin:0; color: #515151;">{{billing_address.country}}</p>
+                </div>
+            </td>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin:0; font-weight: bold;">Ship To</p>
+                    <p style="margin:0; color: #515151;">{{shipping_address.first_name}}
+                        {{shipping_address.last_name}}</p>
+                    <p style="margin:0; color: #515151;">{{shipping_address.country_code}}
+                        {{shipping_address.phone}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.street_address}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.city}},
+                        {{shipping_address.state}},
+                        {{shipping_address.pincode}}</p>
+                    <p style="margin:0; color: #515151;">{{shipping_address.country}}</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #b4b4b4;"></div>
+
+    <table style="width: 100%; font-size: 14px;">
+        <tr>
+            <td style="width: 62%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <table style="width: 100%; font-size: 14px;">
+                    {% if all_jinja_data['ship-via_description'] %}
+                    <tr>
+                        <td style="font-weight: bold; width: 30%;">
+                            Ship-via Description :
+                        </td>
+                        <td style="width: 70%;">
+                            {{ all_jinja_data['ship-via_description'] }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if ship_date %}
+                    <tr>
+                        <td style="font-weight: bold; width: 30%;">
+                            Ship Date :
+                        </td>
+                        <td style="width: 70%;">
+                            {{ format_date(ship_date) }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if cancel_date %}
+                    <tr>
+                        <td style="font-weight: bold; width: 30%;">
+                            Cancel Date :
+                        </td>
+                        <td style="width: 70%;">
+                            {{ format_date(cancel_date) }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </td>
+            <td style="width: 38%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
+                <table style="width: 100%; font-size: 14px;">
+                    {% if order_type %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Order Type :
+                        </td>
+                        <td style="width: 50%;">
+                            {{order_type}} 
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if market_name %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Market Name :
+                        </td>
+                        <td style=" width: 50%;">
+                            {{ market_name }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if payment_terms %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Payment Terms :
+                        </td>
+                        <td style=" width: 50%;">
+                            {{ payment_terms }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Product List -->
+    <div style="margin: 0; padding: 0;">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 12px;">
+            <tbody>
+                <!-- Column Headers -->
+                <tr style="padding: 5px; background: #E4F1EF;">
+                    <td style="width: 5%; padding: 5px; text-align: left; padding-left: 16px;">#</td>
+                    <td style="width: 15%; padding: 5px; text-align: center;">Image</td>
+                    <td style="width: 50%; padding: 5px; text-align: left;">Item & Description</td>
+                    <td style="width: 10%; padding: 5px; text-align: center;">Qty</td>
+                    <td style="width: 12%; padding: 5px; text-align: center;">Unit Price</td>
+                    <td style="width: 13%; padding: 5px; text-align: center;">Total</td>
+                </tr>
+
+                {% for product in products %}
+                <!-- Product Row -->
+                <tr
+                    style="height: 100px !important; max-height: 100px !important; page-break-inside: avoid !important; overflow: hidden; border-bottom: 1px solid #939393;">
+
+                    <td style="vertical-align: top; padding: 16px;">{{product.ser_no}}</td>
+
+                    <td style="padding: 5px; vertical-align: top; height: 100px;">
+                        <img src="{{ product.image_url }}" alt="Product Image"
+                            style="width: 80px; height: 80px ;page-break-inside: avoid !important; ; margin-left: 20px" />
+                    </td>
+
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; color: #515151; padding-top: 16px;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <p style="font-weight: bold; margin: 0;"> {{ product.sku_id }}</p>
+
+                            <p style="font-weight: bold; margin-top: 10px;"> {{ product.name }}</p>
+
+                            {% if product['attribute.Case Pack'] %}
+                            <p style="margin-top: 10px;">Case Pack :{{product['attribute.Case Pack']}}</p>
+                            {% endif %}
+
+                            {% if product.note %}
+                            <p style="text-wrap: nowrap; margin-top: 10px;">Notes -: {{ product.note|replace('\n',
+                                '<br>') }}</p>
+                            {% endif %}
+                        </div>
+                    </td>
+
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 16px;">
+                        {{ product.qty }}</td>
+
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 16px;">
+                        {{ product.offered_price }}
+                    </td>
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 16px;">
+                        {{ product.amount }}</td>
+
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CHARGES -->
+    <table style="width: 35%; font-size: 14px; margin-left: auto; margin-top: 20px; border-collapse: collapse;">
+        <tr>
+            <td style="font-size: 16px; width: 55%; padding: 6px 0;">
+                Sub total
+            </td>
+            <td style="font-size: 16px; width: 45%; padding: 6px 0; text-align: end;">
+                {{cart_total}}
+            </td>
+        </tr>
+        {% for charge in charges %}
+        <tr>
+            <td style="font-size: 16px; width: 55%; padding: 6px 0;">
+                {{ charge.charge_name }}{% if charge.percentage %} ({{ charge.percentage }}){% endif %}
+            </td>
+            <td style="font-size: 16px; width: 45%; padding: 6px 0; text-align: end;">
+                {{charge.charge_value}}
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td style="font-size: 16px; font-weight: bold; width: 55%; padding: 6px 0; border-top: 2px solid #515151;">
+                Total
+            </td>
+            <td
+                style="font-size: 16px; font-weight: bold; width: 45%; padding: 6px 0; border-top: 2px solid #515151; text-align: end;">
+                {{total}}
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #b4b4b4; margin: 20px 0;"></div>
+
+    <!-- DISCLAIMER -->
+    <table style="width: 100%; margin-top: 10px; font-size: 14px;">
+        <tr>
+            <td style="font-weight: bold;">
+                Disclaimer :
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Prices listed on this sales order are subject to change without prior notice due to unforeseen
+                fluctuations in tariffs and ocean freight costs. We strive to provide accurate pricing at the time of
+                order, but these external factors may necessitate adjustments. Please contact us if you have any
+                questions or require further clarification.
+            </td>
+        </tr>
+    </table>
+
+    <!-- NOTES -->
+    <table style="width: 100%; font-size: 14px; margin-top: 15px;">
+        {% if customer_notes %}
+        <tr>
+            <td style="font-size: 16px; font-weight: bold; color: #6E6E6E;">
+                <p style="margin-bottom: 10px;">
+                    Customer Notes :
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>{{ customer_notes|replace('\n', '<br>') }}</p>
+            </td>
+        </tr>
+        {% endif %}
+        {% if user_notes %}
+        <tr">
+            <td style="font-size: 16px; font-weight: bold; color: #6E6E6E;">
+                <p style="margin-bottom: 10px;">
+                    Seller Notes :
+                </p>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                    {{user_notes|replace('\n', '<br>')}}
+                </td>
+            </tr>
+            {% endif %}
+    </table>
+
+</div>
+
+<style type="text/css">
+    .avoid {
+        page-break-inside: avoid !important;
+        margin: 4px 0 4px 0;
+    }
+</style>

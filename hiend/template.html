@@ -1,0 +1,461 @@
+<style>
+    .no-break {
+        page-break-inside: avoid;
+        page-break-after: always;
+    }
+</style>
+
+<div>
+    {% macro format_date(date_string) %}
+    {% set year, month, day = date_string.split('-') %}
+    {{ month }}/{{ day }}/{{ year }}
+    {% endmacro %}
+
+    <!-- HEADER -->
+
+    <table style="width: 100%; font-size: 14px;">
+        <tr>
+            <td style="text-align: center; vertical-align: top;" colspan="2">
+                <p style="font-size: 24px; font-weight: bold; margin-top: 20px;">SALES ORDER</p>
+            </td>
+        </tr>
+    </table>
+    <table style="width: 100%;  font-size: 14px;">
+        <tr style="width: 100%;">
+            <td style=" width: 15%;">
+                <div
+                    style="width: 100%; padding: 5px 2px 0px 0px; display: flex; justify-content: center; align-items: flex-start;">
+                    <img style="width: 120px; height: auto; object-fit: cover;" alt="logo"
+                        src="https://ultronapi-g-p.sourcerer.tech/artifact/v1/file/870295a3-fa50-4df4-95d2-8696cfdfe886" />
+                </div>
+            </td>
+
+            <td style=" width: 55%; vertical-align: top;">
+                <div style="display: flex; flex-direction: column;">
+                    <p style="font-size: 26px; font-weight: bold; margin: 0;">{{header}}</p>
+                    <p style="width: 50%; margin: 0; margin-top: 10px;">{{tenant_address}}</p>
+                </div>
+            </td>
+            <td style=" width: 30%; vertical-align: top;">
+                <table style="width: 100%; font-size: 14px;">
+                    <tr>
+                        <td>
+                            Date :
+                        </td>
+                        <td style="font-weight: bold; text-align: end; vertical-align: top;">
+                            {{all_document_data.created_at}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{doc_type}} :
+                        </td>
+                        <td style="font-weight: bold; text-align: end; vertical-align: top;">
+                            {{system_id}}
+                        </td>
+                    </tr>
+                    {% if po_number %}
+                    <tr>
+                        <td>
+                            PO Number :
+                        </td>
+                        <td style="font-weight: bold; text-align: end; vertical-align: top;">
+                            {{po_number}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #515151; margin-top: 10px;"></div>
+
+    <!-- BUYER DETAILS -->
+    <table style="width: 100%; font-size: 14px;">
+        <tr>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    {% if buyer_name %}
+                    <p style="margin:0; font-weight: bold;">{{ buyer_name }}</p>
+                    {% endif %}
+
+                    {% if buyer_contact_first_name or buyer_contact_last_name %}
+                    <p style="margin:0; color: #515151; height: 16px;">
+                        {{ buyer_contact_first_name }} {{ buyer_contact_last_name }}
+                    </p>
+                    {% endif %}
+
+                    {% if buyer_contact_designation %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{ buyer_contact_designation }}</p>
+                    {% endif %}
+
+                    {% if buyer_email %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{ buyer_email }}</p>
+                    {% endif %}
+
+                    {% if buyer_phone %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{ buyer_phone }}</p>
+                    {% endif %}
+
+                    {% if '3164043d-ece2-4784-9223-6ddbfc29b443' in contact_attributes and
+                    contact_attributes['3164043d-ece2-4784-9223-6ddbfc29b443'].value %}
+                    <p style="margin:0; color: #515151; height: 16px;">
+                        {{ contact_attributes['3164043d-ece2-4784-9223-6ddbfc29b443'].value }}
+                    </p>
+                    {% endif %}
+                </div>
+            </td>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin:0; font-weight: bold;">Bill To</p>
+
+                    {% if billing_address.main_contact_name %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{ billing_address.main_contact_name }}</p>
+                    {% endif %}
+
+                    {% if billing_address.first_name or billing_address.last_name %}
+                    <p style="margin:0; color: #515151; height: 16px;">
+                        {{ billing_address.first_name }} {{ billing_address.last_name }}
+                    </p>
+                    {% endif %}
+
+                    {% if billing_address.email %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{ billing_address.email }}</p>
+                    {% endif %}
+
+                    {% if billing_address.country_code and billing_address.phone %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{billing_address.country_code}}
+                        {{billing_address.phone}}</p>
+                    {% endif %}
+
+                    {% if billing_address.street_address %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{billing_address.street_address}}</p>
+                    {% endif %}
+
+                    {% if billing_address.address_line_1 %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{billing_address.address_line_1}}</p>
+                    {% endif %}
+
+                    {% if billing_address.address_line_2 %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{billing_address.address_line_2}}</p>
+                    {% endif %}
+
+                    {% if billing_address.address_line_3 %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{billing_address.address_line_3}}</p>
+                    {% endif %}
+
+                    {% if billing_address.city or billing_address.state or billing_address.pincode %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">
+                        {% if billing_address.city %}{{billing_address.city}}{% endif %}
+                        {% if billing_address.state %}{% if billing_address.city %}, {% endif
+                        %}{{billing_address.state}}{% endif %}
+                        {% if billing_address.pincode %}{% if billing_address.city or billing_address.state %}, {% endif
+                        %}{{billing_address.pincode}}{% endif %}
+                    </p>
+                    {% endif %}
+
+                    {% if billing_address.country %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{billing_address.country}}</p>
+                    {% endif %}
+
+
+                </div>
+            </td>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin:0; font-weight: bold;">Ship To</p>
+                    {% if shipping_address.main_contact_name %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{ shipping_address.main_contact_name }}</p>
+                    {% endif %}
+
+                    {% if shipping_address.first_name or shipping_address.last_name %}
+                    <p style="margin:0; color: #515151; height: 16px;">
+                        {{ shipping_address.first_name }} {{ shipping_address.last_name }}
+                    </p>
+                    {% endif %}
+
+                    {% if shipping_address.email %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{ shipping_address.email }}</p>
+                    {% endif %}
+
+                    {% if shipping_address.country_code and shipping_address.phone %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.country_code}}
+                        {{shipping_address.phone}}</p>
+                    {% endif %}
+
+                    {% if shipping_address.street_address %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.street_address}}</p>
+                    {% endif %}
+
+                    {% if shipping_address.address_line_1 %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.address_line_1}}</p>
+                    {% endif %}
+
+                    {% if shipping_address.address_line_2 %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.address_line_2}}</p>
+                    {% endif %}
+
+                    {% if shipping_address.address_line_3 %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.address_line_3}}</p>
+                    {% endif %}
+
+                    {% if shipping_address.city or shipping_address.state or shipping_address.pincode %}
+                    <p style="margin:0; color: #515151; min-height: 16px;">
+                        {% if shipping_address.city %}{{shipping_address.city}}{% endif %}
+                        {% if shipping_address.state %}{% if shipping_address.city %}, {% endif
+                        %}{{shipping_address.state}}{% endif %}
+                        {% if shipping_address.pincode %}{% if shipping_address.city or shipping_address.state %}, {%
+                        endif %}{{shipping_address.pincode}}{% endif %}
+                    </p>
+                    {% endif %}
+
+                    {% if shipping_address.country %}
+                    <p style="margin:0; color: #515151; height: 16px;">{{shipping_address.country}}</p>
+                    {% endif %}
+
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #515151;"></div>
+
+    <table style="width: 100%; font-size: 14px;">
+        <tr>
+            <td style="width: 70%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <table style="width: 100%; font-size: 14px;">
+                    {% if payment_terms %}
+                    <tr>
+                        <td style="font-weight: bold; width: 25%;">
+                            Payment Terms :
+                        </td>
+                        <td style="width: 75%;">
+                            {{payment_terms}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if written_for %}
+                    <tr>
+                        <td style="font-weight: bold; width: 25%; ">
+                            Written For :
+                        </td>
+                        <td style="width: 75%; ">
+                            {{written_for}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if written_by %}
+                    <tr>
+                        <td style="font-weight: bold; width: 25%;">
+                            Written By:
+                        </td>
+                        <td style="width: 75%; ">
+                            {{written_by}}
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                </table>
+            </td>
+            <td style="width: 30%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
+                <table style="width: 100%; font-size: 14px;">
+                    {% if market_code %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Market Code:
+                        </td>
+                        <td style="width: 50%;">
+                            {{market_code}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if ship_date %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Ship Date:
+                        </td>
+                        <td style="width: 50%;">
+                            {{ format_date(ship_date) }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if cancel_date %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Cancel Date:
+                        </td>
+                        <td style="width: 50%;">
+                            {{ format_date(cancel_date) }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    {% if payment_terms or written_by or written_for or market_code or ship_date or cancel_date %}
+    <div style="width: 100%; border: 1px solid #515151; margin-bottom: 10px;"></div>
+    {% endif %}
+
+    <!-- Product List -->
+
+    <div style="margin: 0; padding: 0;">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 12px;">
+            <tbody>
+                <!-- Column Headers -->
+                <tr style="padding: 5px; background: #E4F1EF; font-weight: bold;">
+                    <td style="width: 5%; padding: 5px; text-align: left; padding-left: 16px;">#</td>
+                    <td style="width: 15%; padding: 5px; text-align: center;">Image</td>
+                    <td style="width: 41%; padding: 5px; text-align: left;">Item & Description</td>
+                    <td style="width: 6%; padding: 5px; text-align: center;">Qty</td>
+                    <td style="width: 10%; padding: 5px; text-align: center;">Rate</td>
+                    <td style="width: 13%; padding: 5px; text-align: center;">Offered Price</td>
+                    <td style="width: 10%; padding: 5px; text-align: center;">Total</td>
+                </tr>
+
+                {% for product in products %}
+                <!-- Product Row -->
+                <tr
+                    style="height: 120px !important; max-height: 120px !important; page-break-inside: avoid !important; overflow: hidden; border-bottom: 2px solid #b4b4b4;">
+                    <td style="vertical-align: top; padding: 16px;">{{product.ser_no}}</td>
+                    <td style="padding: 5px; vertical-align: top; height: 120px; padding-top: 8px;">
+                        <img src="{{ product.image_url }}" alt="Product Image"
+                            style="width: 80px; height: 80px ;page-break-inside: avoid !important; ; margin-left: 20px" />
+                    </td>
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; color: #515151; padding-top: 8px;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <p style="font-weight: bold; margin: 0;">{{ product.name }} </p>
+                            <p style="margin-top: 10px; "> {{ product.sku_id }}</p>
+                            <p style="margin-top: 10px;">{{product.hinges_values}}</p>
+                            <p style="margin-top: 10px;">{{note|replace('\n', '<br>')}}</p>
+
+                        </div>
+                    </td>
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 8px;">
+                        {{ product.qty|int }}</td>
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 8px;">
+                        {{ product.price }}
+                    </td>
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; color: #515151; padding-top: 8px;">
+                        <div
+                            style="display: flex; flex-direction: column; justify-content: space-between; text-align: center;">
+                            <p style="margin: 0;"> {{ product.offered_price }}</p>
+                            {% if product.discount and product.discount != "0 %" %}
+                            <p style="margin-top: 10px;">(-{{ product.discount }})</p>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 8px;">
+                        {{ product.amount }}</td>
+
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- CHARGES -->
+    <table style="width: 35%; font-size: 14px; margin-left: auto; margin-top: 20px; border-collapse: collapse;">
+        <tr>
+            <td style="font-size: 16px; width: 55%; padding: 6px 0;">
+                Sub total
+            </td>
+            <td style="font-size: 16px; width: 45%; padding: 6px 0; text-align: end;">
+                {{cart_total}}
+            </td>
+        </tr>
+        {% for charge in charges %}
+        {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | float %}
+        {% if not (charge.charge_name | lower | trim in ['tax', 'taxes'] and charge_value_number == 0) %}
+        <tr>
+            <td style="font-size: 16px; width: 55%; padding: 6px 0;">
+                {{ charge.charge_name }}{% if charge.percentage %} ({{ charge.percentage }}){% endif %}
+            </td>
+            <td style="font-size: 16px; width: 45%; padding: 6px 0; text-align: end;">
+                {{charge.charge_value}}
+            </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        <tr>
+            <td style="font-size: 16px; font-weight: bold; width: 55%; padding: 6px 0; border-top: 2px solid #515151;">
+                Total
+            </td>
+            <td
+                style="font-size: 16px; font-weight: bold; width: 45%; padding: 6px 0; border-top: 2px solid #515151; text-align: end;">
+                {{total}}
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #515151; margin: 20px 0;"></div>
+
+    <!-- NOTES -->
+    <table style="width: 100%; font-size: 14px;">
+
+        {% if customer_notes %}
+        <tr>
+            <td style="font-size: 18px; font-weight: bold; color: #515151;">
+                Customer Notes :
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ customer_notes }}
+            </td>
+        </tr>
+        {% endif %}
+        {% if user_notes %}
+        <tr>
+            <td style="font-size: 18px; font-weight: bold; color: #515151;">
+                Seller Notes :
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{user_notes}}
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+    <!-- Signature  -->
+    <div style="margin-top: 20px;">
+        <table style="width: 100%; border-collapse: collapse; border: none; font-size: 12px;">
+            <tr>
+                <td style="border: none; padding: 0;">
+                    {% set src = 'https://frontend-bucket.vercel.app/images/iconchecked.png' if
+                    all_document_data.customer_consent else
+                    'https://frontend-bucket.vercel.app/images/iconunchecked.png' %}
+                    <img src="{{ src }}" style="height: 20px; width: 20px;" />
+                </td>
+                <td style="border: none; padding-left: 30px;">
+                    By signing below, I approve and authorize this order. I have reviewed the information and
+                    confirmed the details are correct.
+                </td>
+            </tr>
+        </table>
+        {% if signature != '' %}
+        <div style="display: flex; justify-content: flex-end; margin-left: 75%;margin-top:20px;">
+            <img src="{{ signature }}"
+                style="padding: 0 20px 2px 20px; border-bottom: 1px solid black; max-height: 150px; max-width: 200px;" />
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+<style type="text/css">
+    .avoid {
+        page-break-inside: avoid !important;
+        margin: 4px 0 4px 0;
+    }
+</style>

@@ -1,0 +1,282 @@
+<style>
+    .no-break {
+        page-break-inside: avoid;
+        page-break-after: always;
+    }
+</style>
+
+<div>
+
+    <!-- HEADER -->
+    <table style="width: 100%;  font-size: 14px;">
+        <tr style="width: 100%;">
+            <td style=" width: 15%;">
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+                    <img style="height: 1in; width: 1in;" alt="logo"
+                        src="https://frontend-bucket.vercel.app/images/itog_logo.png" />
+                </div>
+            </td>
+            <td style=" width: 55%; vertical-align: top;">
+                <div style="display: flex; flex-direction: column;">
+                    <p style="font-size: 26px; font-weight: bold; margin: 0;">{{header}}</p>
+                    <p style="width: 50%; margin: 0; margin-top: 10px;">{{tenant_address}}</p>
+                </div>
+            </td>
+            <td style=" width: 30%; vertical-align: top;">
+                <table style="width: 100%; font-size: 14px;">
+                    <tr>
+                        <td>
+                            Date :
+                        </td>
+                        <td style="font-weight: bold;">
+                            {{date}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Order :
+                        </td>
+                        <td style="font-weight: bold;">
+                            {{system_id}}
+                        </td>
+                    </tr>
+                    {% if po_number %}
+                    <tr>
+                        <td>
+                            PO Number :
+                        </td>
+                        <td style="font-weight: bold;">
+                            {{po_number}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #515151; margin-top: 10px;"></div>
+
+    <!-- BUYER DETAILS -->
+    <table style="width: 100%; font-size: 14px;">
+        <tr>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin:0; font-weight: bold;">{{buyer_name}}</p>
+                    <p style="margin:0; color: #515151; height: 16px;">{{buyer_contact_first_name}}
+                        {{buyer_contact_last_name}}</p>
+                    <p style="margin:0; color: #515151; height: 16px;">{{buyer_contact_designation}}</p>
+                    <p style="margin:0; color: #515151; height: 16px;">{{buyer_email}}</p>
+                    <p style="margin:0; color: #515151; height: 16px;">{{buyer_phone}}</p>
+                </div>
+            </td>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin:0; font-weight: bold;">Bill To</p>
+                    <p style="margin:0; color: #515151; height: 16px;">{{billing_address.first_name}}
+                        {{billing_address.last_name}}</p>
+                    <p style="margin:0; color: #515151; height: 16px;">{{billing_address.country_code}}
+                        {{billing_address.phone}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{billing_address.street_address}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{billing_address.city}}
+                        {{billing_address.state}} {{billing_address.country}}</p>
+                    <p style="margin:0; color: #515151; height: 16px;">Zip Code: {{billing_address.pincode}}</p>
+                </div>
+            </td>
+            <td style="width: 33%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <p style="margin:0; font-weight: bold;">Ship To</p>
+                    <p style="margin:0; color: #515151; height: 16px;">{{shipping_address.first_name}}
+                        {{shipping_address.last_name}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.country_code}}
+                        {{shipping_address.phone}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.street_address}}</p>
+                    <p style="margin:0; color: #515151; min-height: 16px;">{{shipping_address.city}}
+                        {{shipping_address.state}} {{shipping_address.country}}</p>
+                    <p style="margin:0; color: #515151; height: 16px;">Zip Code: {{shipping_address.pincode}}</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #515151;"></div>
+
+    <table style="width: 100%; font-size: 14px;">
+        <tr>
+            <td style="width: 40%; padding: 10px 10px 10px 0; vertical-align: top;">
+                <table style="width: 100%; font-size: 14px;">
+                    {% if payment_terms %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Payment Terms :
+                        </td>
+                        <td style="width: 50%;">
+                            {{payment_terms}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if payment_method %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Payment Method :
+                        </td>
+                        <td style=" width: 50%;">
+                            {{payment_method}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </td>
+            <td style="width: 20%;"></td>
+            <td style="width: 40%; padding: 10px 10px 10px 0; vertical-align: top; margin-left: auto;">
+                <table style="width: 100%; font-size: 14px;">
+                    {% if shipping_method %}
+                    <tr>
+                        <td style="font-weight: bold; width: 50%;">
+                            Shipping Method :
+                        </td>
+                        <td style="width: 50%;">
+                            {{shipping_method}}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    {% if payment_terms or payment_method or shipping_method %}
+        <div style="width: 100%; border: 1px solid #515151; margin-bottom: 10px;"></div>
+    {% endif %}
+
+    <!-- Product List -->
+    <div style="margin: 0; padding: 0;">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 12px;">
+            <tbody>
+                <!-- Column Headers -->
+                <tr style="padding: 5px; background: #E4F1EF;">
+                    <td style="width: 5%; padding: 5px; text-align: left; padding-left: 16px;">#</td>
+                    <td style="width: 15%; padding: 5px; text-align: center;">Image</td>
+                    <td style="width: 50%; padding: 5px; text-align: left;">Item & Description</td>
+                    <td style="width: 10%; padding: 5px; text-align: center;">Qty</td>
+                    <td style="width: 12%; padding: 5px; text-align: center;">Rate</td>
+                    <td style="width: 13%; padding: 5px; text-align: center;">Amount</td>
+                </tr>
+
+                {% for product in products %}
+                <!-- Product Row -->
+                <tr
+                    style="height: 100px !important; max-height: 100px !important; page-break-inside: avoid !important; overflow: hidden; border-bottom: 1px solid #939393;">
+
+                    <td style="vertical-align: top; padding: 16px;">{{product.ser_no}}</td>
+
+                    <td style="padding: 5px; vertical-align: top; height: 100px;">
+                        <img src="{{ product.image_url }}" alt="Product Image"
+                            style="width: 80px; height: 80px ;page-break-inside: avoid !important; ; margin-left: 20px" />
+                    </td>
+
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; color: #515151; padding-top: 16px;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <p style="font-weight: bold; margin: 0;"> {{ product.name }}</p>
+
+                            <p style="margin-top: 10px;"> {{ product.sku_id }}</p>
+
+                            <p style="margin-top: 10px;"> {{ product.hinges_values }}</p>
+                        </div>
+                    </td>
+
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 16px;">
+                        {{ product.qty }}</td>
+
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 16px;">
+                        {{ product.price }}
+                    </td>
+                    <td
+                        style="padding: 5px; page-break-inside: avoid !important; vertical-align: top; text-align: center; color: #515151; padding-top: 16px;">
+                        {{ product.amount }}</td>
+
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CHARGES -->
+    <table style="width: 30%; font-size: 14px; margin-left: auto; margin-top: 20px;">
+        <tr>
+            <td style="font-size: 16px; width: 60%;">
+                Sub total :
+            </td>
+            <td style="font-size: 16px; width: 40%;">
+                {{cart_total}}
+            </td>
+        </tr>
+        {% for charge in charges %}
+        <tr>
+            <td style="font-size: 16px; width: 60%;">
+                {{ charge.charge_name }}{% if charge.percentage %} ({{ charge.percentage }}){% endif %}
+            </td>
+            <td style="font-size: 16px; width: 40%;">
+                {{charge.charge_value}}
+            </td>
+        </tr>
+        {% endfor %}
+        <tr style="border-top: 1px solid #515151;">
+            <td style="font-size: 16px; font-weight: bold; width: 60%;">
+                Total :
+            </td>
+            <td style="font-size: 16px; font-weight: bold; width: 40%;">
+                {{total}}
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 100%; border: 1px solid #515151; margin: 20px 0;"></div>
+
+    <!-- NOTES -->
+    <table style="width: 100%; font-size: 14px;">
+        {% if doc_type == 'Order' %}
+        <tr>
+            <td style="height: 40px; vertical-align: top; font-weight: bold;">
+                Once your order is shipped, you'll receive an email notification with all the shipping details, including tracking information and expected delivery dates.
+            </td>
+        </tr>
+        {% endif %}
+        {% if customer_notes %}
+        <tr>
+            <td style="font-size: 18px; font-weight: bold; color: #515151;">
+                Customer Notes :
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ customer_notes }}
+            </td>
+        </tr>
+        {% endif %}
+        {% if user_notes %}
+        <tr>
+            <td style="font-size: 18px; font-weight: bold; color: #515151;">
+                Seller Notes :
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{user_notes}}
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+
+</div>
+
+<style type="text/css">
+    .avoid {
+        page-break-inside: avoid !important;
+        margin: 4px 0 4px 0;
+    }
+</style>

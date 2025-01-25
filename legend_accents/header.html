@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 5px;
+        }
+
+        .header {
+            font-size: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .header-logo {
+            height: 60px;
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .header-left {
+            width: 70%;
+            vertical-align: top;
+        }
+
+        .header-right {
+            width: 30%;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .header-address {
+            position: absolute;
+            bottom: -5px;
+            left: 70px;
+            transform: translateX(50%);
+        }
+
+        .header-right table {
+            font-size: 12px;
+            width: 100%;
+        }
+
+        .header-right td {
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <table class="header-table">
+            <tr>
+                <!-- Left Side (Logo + Address) -->
+                <td class="header-left">
+                    <div style="display: flex; align-items: center; position: relative;">
+                        <img src="https://ultronapi-g-p.sourcerer.tech/artifact/v1/file/34bcc46a-a27d-4983-bb1d-1852f6003b7b" class="header-logo" alt="logo" />
+                        <p class="header-address">{{ tenant_address }}</p>
+                    </div>
+                </td>
+
+                <!-- Right Side (Details Table) -->
+                <td class="header-right">
+                    <table>
+                        {% if all_document_data.created_at %}
+                        <tr>
+                            <td>Date :</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{ all_document_data.created_at }}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if doc_type and system_id %}
+                        <tr>
+                            <td>{{doc_type}}:</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{system_id}}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if po_number %}
+                        <tr>
+                            <td>PO Number :</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{po_number}}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if doc_type %}
+                        <tr>
+                            <td>Doc Type :</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{doc_type}}</td>
+                        </tr>
+                        {% endif %}
+
+                        {% if event %}
+                        <tr>
+                            <td>Event:</td>
+                            <td style="font-weight: bold; text-align: end; vertical-align: top;">{{event}}</td>
+                        </tr>
+                        {% endif %}
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
