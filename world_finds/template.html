@@ -379,7 +379,7 @@
         </tr>
         {% for charge in charges %}
         {% set charge_value_number = charge.charge_value | replace('$', '') | replace(',', '') | float %}
-        {% if not (charge.charge_name | lower | trim in ['tax', 'taxes'] and charge_value_number == 0) %}
+        {% if not charge_value_number == 0 %}
         <tr>
             <td style="font-size: 16px; width: 55%; padding: 6px 0;">
                 {{ charge.charge_name }}{% if charge.percentage %} ({{ charge.percentage }}){% endif %}
