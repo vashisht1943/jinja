@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Satoshi', sans-serif;
+            line-height: 1.5;
+        }
+
+        .products-container {
+            display: table;
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 16px;
+        }
+
+        .product-row {
+            display: table-row;
+        }
+
+        .product-cell {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            padding: 12px;
+            background: #FFFFFF;
+        }
+
+        .product-image-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F9F9F9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #E4E4E4;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 12px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sku, .product-name, .attributes, .hinge-attributes, .availability {
+            margin-bottom: 8px;
+        }
+
+        .chip {
+            padding: 4px 8px;
+            background-color: #F2F4F7;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #4F555E;
+            display: inline-block;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+
+        .availability {
+            background-color: #F2F6E7;
+            padding: 4px 10px;
+            border-radius: 44px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .green-dot {
+            height: 8px;
+            width: 8px;
+            background-color: #7DA50E;
+            border-radius: 50%;
+        }
+
+        header {
+            border-bottom: 1px solid #0000001F;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .header-divider {
+            border: 1px solid #B5BBC3;
+            margin: 4px 0;
+        }
+
+        .divider {
+            border: 1px dashed #B5BBC3;
+            margin: 16px 0;
+        }
+
+        footer {
+            background-color: #EEF1F7;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <table style="width: 100%; padding: 10px 0;">
+            <tr>
+                <td style="width: 25%;">
+                    <img src="Assets/logo.png" height="40" width="85" alt="Logo">
+                </td>
+                <td style="width: 50%; text-align: center;">
+                    <h1 style="font-weight: 700; color: #25282D; font-size: 18px;">
+                        {{ sheet_title }}
+                    </h1>
+                </td>
+                <td style="width: 25%; text-align: right;">
+                    <p style="font-size: 13px; color: #4F555E; font-weight: 200;">
+                        {{ updated_at }}
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </header>
+
+    <div class="header-divider"></div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="products-container">
+            {% for product in products|batch(2) %}
+            <div class="product-row">
+                {% for item in product %}
+                <div class="product-cell">
+                    <div class="product-image-container">
+                        <img src="{{ item.product_image_1 }}" alt="Product Image" class="product-image">
+                    </div>
+                    
+                    <p class="sku">{{ item.sku_id }}</p>
+                    <h2 class="product-name">{{ item.product_name }}</h2>
+                    
+                    <div class="attributes">
+                        {% for attribute in item.product_attributes %}
+                            {{ attribute.value }}{% if not loop.last %} • {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="hinge-attributes">
+                        {% for attribute in item.hinge_attributes %}
+                        <span class="chip">{{ attribute.name }}: {{ attribute.value }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="availability">
+                        <span class="green-dot"></span>
+                        <span>Available: {{ item.hinges_values }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if not loop.last %}
+            <div class="divider"></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+
+
+</body>
+</html>
