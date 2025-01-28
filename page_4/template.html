@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +18,7 @@
 
         body {
             font-family: 'Satoshi', sans-serif;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .products-container {
@@ -37,14 +36,14 @@
             display: table-cell;
             width: 50%;
             vertical-align: top;
-            padding: 12px;
+            padding: 16px;
             background: #FFFFFF;
         }
 
         .product-image-container {
             position: relative;
             width: 100%;
-            height: 180px;
+            height: 200px;
             border-radius: 12px;
             overflow: hidden;
             background: #F9F9F9;
@@ -64,7 +63,7 @@
         }
 
         .sku, .product-name, .attributes, .hinge-attributes, .availability {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .chip {
@@ -80,11 +79,12 @@
 
         .availability {
             background-color: #F2F6E7;
-            padding: 4px 10px;
+            padding: 6px 12px;
             border-radius: 44px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            font-weight: 600;
         }
 
         .green-dot {
@@ -95,8 +95,11 @@
         }
 
         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
             border-bottom: 1px solid #0000001F;
-            padding-bottom: 10px;
             margin-bottom: 12px;
         }
 
@@ -107,7 +110,7 @@
 
         .divider {
             border: 1px dashed #B5BBC3;
-            margin: 16px 0;
+            margin: 12px 0;
         }
 
         footer {
@@ -127,23 +130,9 @@
 <body>
     <!-- Header -->
     <header>
-        <table style="width: 100%; padding: 10px 0;">
-            <tr>
-                <td style="width: 25%;">
-                    <img src="Assets/logo.png" height="40" width="85" alt="Logo">
-                </td>
-                <td style="width: 50%; text-align: center;">
-                    <h1 style="font-weight: 700; color: #25282D; font-size: 18px;">
-                        {{ sheet_title }}
-                    </h1>
-                </td>
-                <td style="width: 25%; text-align: right;">
-                    <p style="font-size: 13px; color: #4F555E; font-weight: 200;">
-                        {{ updated_at }}
-                    </p>
-                </td>
-            </tr>
-        </table>
+        <img src="Assets/logo.png" height="40" width="85" alt="Logo">
+        <h1 style="font-weight: 700; color: #25282D; font-size: 18px; text-align:center; flex-grow:1;">{{ sheet_title }}</h1>
+        <p style="font-size: 13px; color: #4F555E; font-weight: 200;">{{ updated_at }}</p>
     </header>
 
     <div class="header-divider"></div>
@@ -188,6 +177,5 @@
         </div>
     </main>
 
-
 </body>
-</html>
+
