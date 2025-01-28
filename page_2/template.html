@@ -122,12 +122,26 @@
                             <img src="{{ product.product_image_1 }}" alt="Product Image" style="width:280px; height:235px; object-fit:cover; border-radius:8px;">
                         </td>
                         <td style="width: 70%;">
-                            <p style="font-size:12px; font-weight:400; color:#676D77; margin-bottom: 8px;">SKU: {{ product.sku_id }}</p>
+                            <p style="font-size:15px; font-weight:400; color:#676D77; margin-bottom: 8px;">{{ product.sku_id }}</p>
                             <h2 style="font-size:16px; font-weight:700; color:rgba(0,0,0,0.87); margin-bottom: 8px;">
                                 {{ product.product_name }}
                             </h2>
-                            <p style="font-size:13px; font-weight:400; color:#4F555E; margin-bottom: 8px;">Material: {{ product.product_attributes[1].value }}</p>
-                            <p style="font-size:13px; font-weight:400; color:#4F555E; margin-bottom: 8px;">Color: {{ product.product_attributes[0].value }}</p>
+                            <table style="width: auto; margin: 8px 0 0 0; border-collapse: collapse; border-spacing: 0;">
+                                <tr>
+                                    {% for attribute in product.product_attributes %}
+                                        <!-- Attribute Value -->
+                                        <td style="font-size: 13px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-right: 6px; padding-left: 0px;">
+                                            {{ attribute.value }}
+                                        </td>
+                                        
+                                        {% if not loop.last %} <!-- Add dot separator if not the last attribute -->
+                                            <td style="font-size: 13px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-right: 6px; padding-left: 0px;">
+                                                &#8226;
+                                            </td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            </table>
                             <div style="margin-top:8px;">
                                 <!-- Chips -->
                                 {% for attribute in product.hinge_attributes %}
