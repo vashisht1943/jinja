@@ -125,20 +125,20 @@
                             <span class="chip">{{ attribute.name }}: {{ attribute.value }}</span>
                             {% endfor %}
                         </div>
-                        <table style="width: 100%; background-color: #F2F6E7; padding: 3px 8px; border-radius: 44px; margin-top: 8px; border-collapse: collapse;">
+                        <table style="width: auto; background-color: #F2F6E7; padding: 0; border-radius: 12px; margin-top: 8px; border-collapse: collapse; border-spacing: 0;">
                             <tr>
                                 <!-- Green Dot -->
-                                <td style="width: 3%; vertical-align: middle; text-align: center; padding-right: 0px; margin: 0;">
+                                <td style="vertical-align: middle; text-align: center; padding: 4px;">
                                     <div style="height: 8px; width: 8px; background-color: #7DA50E; border-radius: 50%;"></div>
                                 </td>
                                 <!-- Availability Text -->
-                                <td style="vertical-align: middle; text-align: left;">
-                                    <p style="font-size: 13px; font-weight: 400; color: #4F555E; margin: 0; display: inline-block;">
-                                        Variants: {{ product.hinges_values }}
+                                <td style="vertical-align: middle; text-align: left; padding: 4px;">
+                                    <p style="font-size: 13px; font-weight: 400; color: #4F555E; margin: 0;">
+                                        Available: {{ product.hinges_values }}
                                     </p>
                                 </td>
                             </tr>
-                        </table>
+                        </table>                        
                         <div style="margin-top: 8px;">
                             <h3 style="font-size:16px; font-weight:700;">Category: {{ product.group_name }}</h3>
                             <p style="font-size:12px; font-weight:400; color:#4F555E;">Priority: {{ product.priority }}</p>
