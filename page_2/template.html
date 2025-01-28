@@ -49,6 +49,11 @@
         margin: 16px 0;
     }
 
+    .header-divider {
+        border: 1px solid #B5BBC3;
+        margin: 2px 0;
+    }
+
     .chip {
         padding: 3px 6px;
         background-color: #F2F4F7;
@@ -80,21 +85,21 @@
     <div>
         <!-- Header -->
         <header>
-            <table>
+            <table style="width: 100%; border-bottom: 1px solid #0000001F; padding: 8px 0; border-collapse: collapse;">
                 <tr>
-                    <td>
-                        <!-- Logo -->
-                        <img src="{{ img_logo }}" height="40" width="85" alt="Logo">
+                    <!-- Logo -->
+                    <td style="width: 25%; text-align: left; vertical-align: middle;">
+                        <img src="Assets/logo.png" height="40" width="85" alt="Logo">
                     </td>
-                    <td style="text-align: center;">
-                        <!-- Sheet Title -->
-                        <h1 style="font-weight: 700; color: #25282D; font-size: 16px;">
+                    <!-- Sheet Title -->
+                    <td style="width: 50%; text-align: center; vertical-align: middle;">
+                        <h1 style="font-weight: 700; color: #25282D; font-size: 16px; margin: 0;">
                             {{ sheet_title }}
                         </h1>
                     </td>
-                    <td style="text-align: right;">
-                        <!-- Date -->
-                        <p style="font-size: 13px; color: #4F555E; font-weight: 200;">
+                    <!-- Date -->
+                    <td style="width: 25%; text-align: right; vertical-align: middle;">
+                        <p style="font-size: 13px; color: #4F555E; font-weight: 200; margin: 0;">
                             {{ updated_at }}
                         </p>
                     </td>
@@ -102,65 +107,72 @@
             </table>
         </header>
 
+        <div class="header-divider"></div>
+
         <!-- Main Content -->
         <main>
-            <!-- Loop through products -->
-            {% for product in products %}
-            <table>
-                <tr style="width: 100%;">
-                    <td style="width: 30%;">
-                        <!-- Product Image -->
-                        <img src="{{ product.product_image_1 }}" alt="Product Image" style="width:280px; height:235px; object-fit:cover; border-radius:8px;">
-                    </td>
-                    <td style="width: 70%;">
-                        <p style="font-size:12px; font-weight:400; color:#676D77;">SKU: {{ product.sku_id }}</p>
-                        <h2 style="font-size:16px; font-weight:700; color:rgba(0,0,0,0.87);">
-                            {{ product.product_name }}
-                        </h2>
-                        <p style="font-size:13px; font-weight:400; color:#4F555E;">Material: {{ product.product_attributes[1].value }}</p>
-                        <p style="font-size:13px; font-weight:400; color:#4F555E;">Color: {{ product.product_attributes[0].value }}</p>
-                        <div style="margin-top:8px;">
-                            <!-- Chips -->
-                            {% for attribute in product.hinge_attributes %}
-                            <span class="chip">{{ attribute.name }}: {{ attribute.value }}</span>
-                            {% endfor %}
-                        </div>
-                        <table style="width: auto; background-color: #F2F6E7; padding: 0; border-radius: 12px; margin-top: 8px; border-collapse: collapse; border-spacing: 0;">
-                            <tr>
-                                <!-- Green Dot -->
-                                <td style="vertical-align: middle; text-align: center; padding: 4px;">
-                                    <div style="height: 8px; width: 8px; background-color: #7DA50E; border-radius: 50%;"></div>
-                                </td>
-                                <!-- Availability Text -->
-                                <td style="vertical-align: middle; text-align: left; padding: 4px;">
-                                    <p style="font-size: 13px; font-weight: 400; color: #4F555E; margin: 0;">
-                                        Available: {{ product.hinges_values }}
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>                        
-                        <div style="margin-top: 8px;">
-                            <h3 style="font-size:16px; font-weight:700;">Category: {{ product.group_name }}</h3>
-                            <p style="font-size:12px; font-weight:400; color:#4F555E;">Priority: {{ product.priority }}</p>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <!-- Loop through products in groups of 2 -->
+            {% for product_group in products|batch(2) %}
+            <div class="product-group">
+                {% for product in product_group %}
+                <table>
+                    <tr style="width: 100%;">
+                        <td style="width: 30%;">
+                            <!-- Product Image -->
+                            <img src="{{ product.product_image_1 }}" alt="Product Image" style="width:280px; height:235px; object-fit:cover; border-radius:8px;">
+                        </td>
+                        <td style="width: 70%;">
+                            <p style="font-size:12px; font-weight:400; color:#676D77; margin-bottom: 8px;">SKU: {{ product.sku_id }}</p>
+                            <h2 style="font-size:16px; font-weight:700; color:rgba(0,0,0,0.87); margin-bottom: 8px;">
+                                {{ product.product_name }}
+                            </h2>
+                            <p style="font-size:13px; font-weight:400; color:#4F555E; margin-bottom: 8px;">Material: {{ product.product_attributes[1].value }}</p>
+                            <p style="font-size:13px; font-weight:400; color:#4F555E; margin-bottom: 8px;">Color: {{ product.product_attributes[0].value }}</p>
+                            <div style="margin-top:8px;">
+                                <!-- Chips -->
+                                {% for attribute in product.hinge_attributes %}
+                                <span class="chip">{{ attribute.name }}: {{ attribute.value }}</span>
+                                {% endfor %}
+                            </div>
+                            <table style="width: auto; background-color: #F2F6E7; padding: 0; border-radius: 12px; margin-top: 8px; border-collapse: collapse; border-spacing: 0;">
+                                <tr>
+                                    <!-- Green Dot -->
+                                    <td style="vertical-align: middle; text-align: center; padding: 4px;">
+                                        <div style="height: 8px; width: 8px; background-color: #7DA50E; border-radius: 50%;"></div>
+                                    </td>
+                                    <!-- Availability Text -->
+                                    <td style="vertical-align: middle; text-align: left; padding: 4px;">
+                                        <p style="font-size: 13px; font-weight: 400; color: #4F555E; margin: 0;">
+                                            Available: {{ product.hinges_values }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>                        
+                            <div style="margin-top: 8px;">
+                                <h3 style="font-size:16px; font-weight:700;">Category: {{ product.group_name }}</h3>
+                                <p style="font-size:12px; font-weight:400; color:#4F555E;">Priority: {{ product.priority }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
-            <table style="width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; color: #4F555E;">
-                <!-- Description -->
-                <tr>
-                    <td style="width: 20%; font-weight: 400; color: #676D77; line-height: 17.55px; vertical-align: top;">
-                        Description
-                    </td>
-                    <td style="width: 80%; line-height: 17.55px;">
-                        {{ product.product_details }}
-                    </td>
-                </tr>
-            </table>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; color: #4F555E;">
+                    <!-- Description -->
+                    <tr>
+                        <td style="width: 20%; font-weight: 400; color: #676D77; line-height: 17.55px; vertical-align: top;">
+                            Description
+                        </td>
+                        <td style="width: 80%; line-height: 17.55px;">
+                            {{ product.product_details }}
+                        </td>
+                    </tr>
+                </table>
 
-            <!-- Divider -->
-            <div class="divider"></div>
+                <!-- Divider -->
+                <div class="divider"></div>
+                {% endfor %}
+            </div>
+            <div style="page-break-after: always;"></div>
             {% endfor %}
         </main>
 
