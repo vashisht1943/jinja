@@ -298,7 +298,7 @@
                             <p style="margin-top: 10px;">{{ product.sku_id }}</p>
                             <p style="margin-top: 10px;">{{product.hinges_values}}</p>
                             <p style="margin-top: 10px;">{{note|replace('\n', '<br>')}}</p>
-                            {% if product.inventory.inventory_status and not product.inventory.inventory_status == 'IN_STOCK' %}
+                            {% if product.inventory.inventory_status and product.inventory.inventory_status == 'BACKORDER' %}
                             <span style="
                             display: inline-block;
                             background-color: #FBF7E3;
