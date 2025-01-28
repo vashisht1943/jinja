@@ -53,6 +53,7 @@
             border: 1px solid #E4E4E4;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 12px;
+            padding: 4px;
         }
 
         .product-image {
@@ -163,17 +164,30 @@
                         {% endfor %}
                     </div>
                     
-                    <div class="availability">
-                        <span class="green-dot"></span>
-                        <span>Available: {{ item.hinges_values }}</span>
-                    </div>
+                    <table style="width: auto; background-color: #F2F6E7; padding: 0; border-radius: 12px; margin-top: 8px; border-collapse: collapse; border-spacing: 0;">
+                        <tr>
+                            <!-- Green Dot -->
+                            <td style="vertical-align: middle; text-align: center; padding: 4px;">
+                                <div style="height: 8px; width: 8px; background-color: #7DA50E; border-radius: 50%;"></div>
+                            </td>
+                            <!-- Availability Text -->
+                            <td style="vertical-align: middle; text-align: left; padding: 4px;">
+                                <p style="font-size: 13px; font-weight: 400; color: #4F555E; margin: 0;">
+                                    Available: {{ item.hinges_values }}
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="divider"></div>
                 </div>
+                
                 {% endfor %}
+                
             </div>
             {% if not loop.last %}
-            <div class="divider"></div>
             {% endif %}
             {% endfor %}
+            
         </div>
     </main>
 
