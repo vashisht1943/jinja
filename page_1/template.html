@@ -181,12 +181,12 @@
                         <tr style="width: 100%;">
                             <td style="width: 100%;">
                                 <table
-                                    style="width: auto; margin: 8px 0 0 0; border-collapse: collapse; border-spacing: 0;">
+                                    style="width: auto; margin: 10px 0; border-collapse: collapse; border-spacing: 0;">
                                     <tr>
                                         {% for attribute in product.product_hinges %}
                                         <!-- Attribute Value -->
                                         <td
-                                            style="font-size: 13px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-right: 6px; padding-left: 0px;">
+                                            style="font-size: 16px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-right: 6px; padding-left: 0px;">
                                             {{ attribute.variants }}
                                         </td>
 
@@ -205,13 +205,13 @@
                                 </h2>
                                 <p style="font-size:15px; font-weight:400; color:#676D77; margin-bottom: 15px;">{{
                                     product.sku_id }}</p>
-                                <div style="margin-top:8px;">
+                                <div style="margin:8px 0;">
                                     <!-- Chips -->
                                     {% for attribute in product.hinge_attributes %}
                                     <span class="chip">{{ attribute.name }}: {{ attribute.value }}</span>
                                     {% endfor %}
                                 </div>
-                                <table style="margin-top: 8px; border-collapse: collapse; width: auto;">
+                                <table style="margin: 8px 0; border-collapse: collapse; width: auto;">
                                     <tr>
                                         <!-- Price -->
                                         <td
