@@ -84,7 +84,7 @@
                 <tr>
                     <td>
                         <!-- Logo -->
-                        <img src="Assets/logo.png" height="40" width="85" alt="Logo">
+                        <img src="{{ img_logo }}" height="40" width="85" alt="Logo">
                     </td>
                     <td style="text-align: center;">
                         <!-- Sheet Title -->
@@ -95,7 +95,7 @@
                     <td style="text-align: right;">
                         <!-- Date -->
                         <p style="font-size: 13px; color: #4F555E; font-weight: 200;">
-                            {{ date }}
+                            {{ updated_at }}
                         </p>
                     </td>
                 </tr>
@@ -110,19 +110,19 @@
                 <tr style="width: 100%;">
                     <td style="width: 30%;">
                         <!-- Product Image -->
-                        <img src="Assets/first-image.png" alt="Product Image" style="width:280px; height:235px; object-fit:cover; border-radius:8px;">
+                        <img src="{{ product.product_image_1 }}" alt="Product Image" style="width:280px; height:235px; object-fit:cover; border-radius:8px;">
                     </td>
                     <td style="width: 70%;">
-                        <p style="font-size:12px; font-weight:400; color:#676D77;">SKU: {{ product.sku }}</p>
+                        <p style="font-size:12px; font-weight:400; color:#676D77;">SKU: {{ product.sku_id }}</p>
                         <h2 style="font-size:16px; font-weight:700; color:rgba(0,0,0,0.87);">
-                            {{ product.name }}
+                            {{ product.product_name }}
                         </h2>
-                        <p style="font-size:13px; font-weight:400; color:#4F555E;">Category: {{ product.category }}</p>
-                        <p style="font-size:13px; font-weight:400; color:#4F555E;">{{ product.description }}</p>
+                        <p style="font-size:13px; font-weight:400; color:#4F555E;">Material: {{ product.product_attributes[1].value }}</p>
+                        <p style="font-size:13px; font-weight:400; color:#4F555E;">Color: {{ product.product_attributes[0].value }}</p>
                         <div style="margin-top:8px;">
                             <!-- Chips -->
-                            {% for feature in product.features %}
-                            <span class="chip">{{ feature }}</span>
+                            {% for attribute in product.hinge_attributes %}
+                            <span class="chip">{{ attribute.name }}: {{ attribute.value }}</span>
                             {% endfor %}
                         </div>
                         <table style="width: 100%; background-color: #F2F6E7; padding: 3px 8px; border-radius: 44px; margin-top: 8px; border-collapse: collapse;">
@@ -134,61 +134,30 @@
                                 <!-- Availability Text -->
                                 <td style="vertical-align: middle; text-align: left;">
                                     <p style="font-size: 13px; font-weight: 400; color: #4F555E; margin: 0; display: inline-block;">
-                                        Available: <samp>{{ product.available_units }}</samp> units
+                                        Variants: {{ product.hinges_values }}
                                     </p>
                                 </td>
                             </tr>
                         </table>
                         <div style="margin-top: 8px;">
-                            <h3 style="font-size:16px; font-weight:700;">${{ product.price }}</h3>
-                            <p style="font-size:12px; font-weight:400; color:#4F555E;">MOQ: {{ product.moq }}</p>
+                            <h3 style="font-size:16px; font-weight:700;">Category: {{ product.group_name }}</h3>
+                            <p style="font-size:12px; font-weight:400; color:#4F555E;">Priority: {{ product.priority }}</p>
                         </div>
                     </td>
                 </tr>
             </table>
 
             <table style="width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; color: #4F555E;">
-                <!-- Long text -->
+                <!-- Description -->
                 <tr>
                     <td style="width: 20%; font-weight: 400; color: #676D77; line-height: 17.55px; vertical-align: top;">
-                        Long text
+                        Description
                     </td>
                     <td style="width: 80%; line-height: 17.55px;">
-                        {{ product.long_text }}
-                    </td>
-                </tr>
-            
-                <!-- Style -->
-                <tr>
-                    <td style="width: 20%; font-weight: 400; color: #676D77; line-height: 17.55px; vertical-align: top;">
-                        Style
-                    </td>
-                    <td style="width: 80%; line-height: 17.55px;">
-                        {{ product.style }}
-                    </td>
-                </tr>
-            
-                <!-- Finish -->
-                <tr>
-                    <td style="width: 20%; font-weight: 400; color: #676D77; line-height: 17.55px; vertical-align: top;">
-                        Finish
-                    </td>
-                    <td style="width: 80%; line-height: 17.55px;">
-                        {{ product.finish }}
-                    </td>
-                </tr>
-            
-                <!-- Color -->
-                <tr>
-                    <td style="width: 20%; font-weight: 400; color: #676D77; line-height: 17.55px; vertical-align: top;">
-                        Color
-                    </td>
-                    <td style="width: 80%; line-height: 17.55px;">
-                        {{ product.color }}
+                        {{ product.product_details }}
                     </td>
                 </tr>
             </table>
-            
 
             <!-- Divider -->
             <div class="divider"></div>
@@ -197,8 +166,8 @@
 
         <!-- Footer -->
         <footer>
-            <a href="{{ footer_link }}" style="color: #4F555E; font-size: 11px; font-weight: 400;">{{ footer_link_text }}</a>
-            <p style="color: #4F555E; font-size: 11px; font-weight: 700;">Page {{ page_number }}</p>
+            <a href="{{ website }}" style="color: #4F555E; font-size: 11px; font-weight: 400;">{{ website }}</a>
+            <p style="color: #4F555E; font-size: 11px; font-weight: 700;">Tenant Address: {{ tenant_address }}</p>
         </footer>
     </div>
 </body>
