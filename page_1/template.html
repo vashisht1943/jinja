@@ -184,13 +184,12 @@
                                     style="width: auto; margin: 10px 0; border-collapse: collapse; border-spacing: 0;">
                                     <tr>
                                         {% for attribute in product.product_hinges %}
-                                        <!-- Attribute Value -->
                                         <td
                                             style="font-size: 16px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-right: 6px; padding-left: 0px;">
                                             {{ attribute.variants }}
                                         </td>
 
-                                        {% if not loop.last %} <!-- Add dot separator if not the last attribute -->
+                                        {% if not loop.last %}
                                         <td
                                             style="font-size: 13px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-right: 6px; padding-left: 0px;">
                                             &#8226;
