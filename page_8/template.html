@@ -90,7 +90,7 @@
     <div>
         <main>
             {% for product_group in products|batch(8) %}
-            <header style="height: 5%; border:1px solid">
+            <header style="height: 5%;">
                 <table style="width: 100%; padding: 8px 0; border-collapse: collapse;">
                     <tr>
                         <td style="width: 25%; text-align: left; vertical-align: middle;">
@@ -132,14 +132,7 @@
                                         {{ product.product_name }}
                                     </h2>
                                     {% endif %}
-                                
-                                    {% if product.hinge_attributes %}
-                                    <div style="margin-top:6px;">
-                                        {% for attribute in product.hinge_attributes %}
-                                        <span class="chip" style="font-size: 15px;">{{ attribute.name }}: {{ attribute.value }}</span>
-                                        {% endfor %}
-                                    </div>
-                                    {% endif %}
+
                                     <table style="margin-top: 6px; border-collapse: collapse; width: auto;">
                                         <tr>
                                             {% if product.price_value %}
@@ -156,6 +149,14 @@
                                             </td>
                                         </tr>
                                     </table>
+                                
+                                    {% if product.hinge_attributes %}
+                                    <div style="margin-top:6px;">
+                                        {% for attribute in product.hinge_attributes %}
+                                        <span class="chip" style="font-size: 15px;">{{ attribute.name }}: {{ attribute.value }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
                                 </td>
                             </tr>
                         </table>
