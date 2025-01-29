@@ -68,7 +68,7 @@
     <div>
         <main>
             {% for product_group in products|batch(2) %}
-            <div>
+            <!-- <div>
                 <header>
                     <table
                         style="width: 100%; border-bottom: 1px solid #0000001F; padding: 8px 0; border-collapse: collapse;">
@@ -95,7 +95,7 @@
                 </header>
 
                 <div class="header-divider"></div>
-            </div>
+            </div> -->
             <div>
                 {% for product in product_group %}
                 <table style="position: relative;">
@@ -203,7 +203,7 @@
                 <div class="divider"></div>
                 {% endfor %}
             </div>
-            <footer style="background-color: #EEF1F7;">
+            <!-- <footer style="background-color: #EEF1F7;">
                 <table>
                     <tr>
                         <td style="text-align: left;">
@@ -217,7 +217,7 @@
                         </td>
                     </tr>
                 </table>
-            </footer>
+            </footer> -->
             {% if not loop.last %}
             <div style="page-break-after: always;"></div>
             {% endif %}
