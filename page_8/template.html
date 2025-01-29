@@ -92,7 +92,7 @@
         <!-- Header -->
         <main>
             {% for product_group in products|batch(8) %}
-            <header>
+            <header style="height: 5%;">
                 <table style="width: 100%; padding: 8px 0; border-collapse: collapse;">
                     <tr>
                         <!-- Logo -->
@@ -115,24 +115,24 @@
                     </tr>
                 </table>
             </header>
-            <table style="width: 100%; border-collapse: collapse; text-align: center;border: 1px solid green;">
+            <table style="width: 100%; border-collapse: collapse; text-align: center;">
                 {% for product_row in product_group|batch(2) %}
                 <tr>
                     {% for product in product_row %}
                     <td style="width: 50%; padding: 5px;">
-                        <table style="width: 100%; height: 100%; border: 1px solid green;">
+                        <table style="width: 100%; height: 100%;">
                             <tr style="width: 100%;">
-                                <td style="width: 40%; height: 100%; vertical-align: top; padding: 2px; box-sizing: border-box; border: 1px solid #25282D;">
+                                <td style="width: 40%; height: 100%; vertical-align: top; box-sizing: border-box;">
                                     <img src="{{ product.product_image_1 }}" alt="Product Image" 
-                                        style="width: 100%; height: 150px; object-fit: contain; border-radius: 10px; border: 1px solid #25282D;">
+                                        style="width: 100%; height: 150px; object-fit: contain; padding: 2px; border-radius: 10px; border: 1px solid lightgray; ">
                                 </td>
                                 <td style="width: 80%; ">
                                     {% if product.sku_id %}
-                                    <p style="font-size:16px; font-weight:400; color:#676D77; margin-bottom: 10px;">
+                                    <p style="font-size:16px; font-weight:400; color:#676D77; padding-bottom: 6px;">
                                         {{product.sku_id }}</p>
                                     {% endif %}
                                     {% if product.product_name %}
-                                    <h2 style="font-size:20px; font-weight:600; color:rgba(0,0,0,0.87); margin-bottom: 6px;">
+                                    <h2 style="font-size:18px; font-weight:600; color:rgba(0,0,0,0.87); padding-bottom: 6px;">
                                         {{ product.product_name }}
                                     </h2>
                                     {% endif %}
@@ -145,34 +145,31 @@
                                         {% endfor %}
                                     </div>
                                     {% endif %}
-                                    <table style="margin-top: 6px; border-collapse: collapse; width: auto; border: 1px solid #25282D;">
-                                        {% if product.price_value %}
+                                    <table style="margin-top: 6px; border-collapse: collapse; width: auto;">
                                         <tr>
-                                            <!-- Price -->
+                                            {% if product.price_value %}
                                             <td
                                                 style="vertical-align: middle; font-size: 16px; font-weight: 600; color: #25282D; text-align: left; padding-right: 0;">
                                                 {{ product.price_currency }}{{ product.price_value }}
                                             </td>
-                                            <!-- MOQ -->
-                                             {% if product.moq %}
-                                            <td
-                                                style="vertical-align: middle; font-size: 16px; font-weight: 400; color: #4F555E; text-align: left;  border: 1px solid #25282D;">
-                                                (MOQ - {{ product.moq }})
-                                            </td>
                                             {% endif %}
+                                            <td
+                                            style="vertical-align: middle; font-size: 16px; font-weight: 400; color: #4F555E; text-align: left;">
+                                                {% if product.moq %}
+                                                (MOQ - {{ product.moq }})
+                                                {% endif %}
+                                            </td>
                                         </tr>
-                                        {% endif %}
                                     </table>
                                 </td>
                             </tr>
                         </table>
         
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14px; color: #4F555E; border: 1px solid #25282D;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #4F555E; border: 1px solid black;">
                             <tbody>
                                 {% for attribute in product.product_attributes %}
                                 {% if attribute.value %}
                                 <tr>
-                                    <!-- Attribute Name -->
                                     <td style=" width: 20%; font-size: 14px; font-weight: 400; color: #676D77; line-height: 15px; padding: 4px;">
                                         {{ attribute.name }}
                                     </td>
