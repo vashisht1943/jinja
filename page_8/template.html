@@ -87,26 +87,21 @@
     {% set year, month, day = date_part.split('-') %} {# Split into year, month, and day #}
     {{ month }}/{{ day }}/{{ year }} {# Format as MM/DD/YYYY #}
     {% endmacro %}
-    <!-- Main Container -->
     <div>
-        <!-- Header -->
         <main>
             {% for product_group in products|batch(8) %}
-            <header style="height: 5%;">
+            <header style="height: 5%; border:1px solid">
                 <table style="width: 100%; padding: 8px 0; border-collapse: collapse;">
                     <tr>
-                        <!-- Logo -->
                         <td style="width: 25%; text-align: left; vertical-align: middle;">
-                            <img src="Assets/logo.png" alt="Logo" style="object-fit: contain; height: 55px; width: auto;">
+                            <img src="../page_1/Assets/logo.png" alt="Logo" style="object-fit: contain; height: 55px; width: auto;">
                         </td>
-                        <!-- Sheet Title -->
                         <td style="width: 50%; text-align: center; vertical-align: bottom;">
                             <h1 style="font-weight: 700; color: #25282D; font-size: 20px; margin: 0; padding-bottom: 10px;">
                                 {{ sheet_title }}
                                 Dallas Tradeshow Collection
                             </h1>
                         </td>
-                        <!-- Date -->
                         <td style="width: 25%; text-align: right; vertical-align: bottom;">
                             <p style="font-size: 16px; color: #4F555E; font-weight: 200; margin: 0; padding-bottom: 10px;">
                                 {{ format_date(updated_at) }}
@@ -115,6 +110,7 @@
                     </tr>
                 </table>
             </header>
+            <div class="header-divider"></div>
             <table style="width: 100%; border-collapse: collapse; text-align: center;">
                 {% for product_row in product_group|batch(2) %}
                 <tr>
@@ -139,7 +135,6 @@
                                 
                                     {% if product.hinge_attributes %}
                                     <div style="margin-top:6px;">
-                                        <!-- Chips -->
                                         {% for attribute in product.hinge_attributes %}
                                         <span class="chip" style="font-size: 15px;">{{ attribute.name }}: {{ attribute.value }}</span>
                                         {% endfor %}
@@ -165,7 +160,7 @@
                             </tr>
                         </table>
         
-                        <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #4F555E; border: 1px solid black;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #4F555E;">
                             <tbody>
                                 {% for attribute in product.product_attributes %}
                                 {% if attribute.value %}
@@ -173,7 +168,6 @@
                                     <td style=" width: 20%; font-size: 14px; font-weight: 400; color: #676D77; line-height: 15px; padding: 4px;">
                                         {{ attribute.name }}
                                     </td>
-                                    <!-- Attribute Value -->
                                     <td style=" width: 80%; font-size: 14px; font-weight: 400; color: #25282D; line-height: 15px; padding: 4px;">
                                         {{ attribute.value }}
                                     </td>
