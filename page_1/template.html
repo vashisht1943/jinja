@@ -87,24 +87,19 @@
     {% set year, month, day = date_part.split('-') %} {# Split into year, month, and day #}
     {{ month }}/{{ day }}/{{ year }} {# Format as MM/DD/YYYY #}
     {% endmacro %}
-    <!-- Main Container -->
     <div>
-        <!-- Header -->
         <header>
             <table style="width: 100%; border-bottom: 1px solid #0000001F; padding: 8px 0; border-collapse: collapse;">
                 <tr>
-                    <!-- Logo -->
                     <td style="width: 25%; text-align: left; vertical-align: middle;">
                         <img src="Assets/logo.png" alt="Logo" style="object-fit: contain; height: 55px; width: auto;">
                     </td>
-                    <!-- Sheet Title -->
                     <td style="width: 50%; text-align: center; vertical-align: bottom;">
                         <h1 style="font-weight: 700; color: #25282D; font-size: 20px; margin: 0; padding-bottom: 10px;">
                             {{ sheet_title }}
                             Dallas Tradeshow Collection
                         </h1>
                     </td>
-                    <!-- Date -->
                     <td style="width: 25%; text-align: right; vertical-align: bottom;">
                         <p style="font-size: 16px; color: #4F555E; font-weight: 200; margin: 0; padding-bottom: 10px;">
                             {{ format_date(updated_at) }}
@@ -116,9 +111,7 @@
 
         <div class="header-divider"></div>
 
-        <!-- Main Content -->
         <main style="height: 80%;">
-            <!-- Loop through products in groups of 2 -->
             <div>
                 {% for product in products %}
                 {% if product.product_image_1 and product.product_image_2 and product.product_image_3 %}
@@ -205,19 +198,18 @@
                                 <p style="font-size:15px; font-weight:400; color:#676D77; margin-bottom: 15px;">{{
                                     product.sku_id }}</p>
                                 <div style="margin:8px 0;">
-                                    <!-- Chips -->
                                     {% for attribute in product.hinge_attributes %}
                                     <span class="chip">{{ attribute.name }}: {{ attribute.value }}</span>
                                     {% endfor %}
                                 </div>
                                 <table style="margin: 8px 0; border-collapse: collapse; width: auto;">
                                     <tr>
-                                        <!-- Price -->
+                                        {% if product.price_value %}
                                         <td
                                             style="vertical-align: middle; font-size: 16px; font-weight: 700; color: #25282D; text-align: left; padding-right: 0;">
                                             {{ product.price_currency }}{{ product.price_value }}
                                         </td>
-                                        <!-- MOQ -->
+                                        {% endif %}
                                         {% if product.moq %}
                                         <td
                                             style="vertical-align: middle; font-size: 13px; font-weight: 400; color: #4F555E; text-align: left;">
@@ -226,17 +218,16 @@
                                         {% endif %}
                                     </tr>
                                 </table>
+                                {% if product.available %}
                                 <table
                                     style="width: auto; background-color: #F2F6E7; padding: 0; border-radius: 12px; margin-top: 8px; border-collapse: collapse; border-spacing: 0;">
                                     <tr>
-                                        <!-- Green Dot -->
                                         <td
                                             style="vertical-align: middle; text-align: center; padding: 4px; padding-left: 10px;">
                                             <div
                                                 style="height: 8px; width: 8px; background-color: #7DA50E; border-radius: 50%;">
                                             </div>
                                         </td>
-                                        <!-- Availability Text -->
                                         <td
                                             style="vertical-align: middle; text-align: left; padding: 4px; padding-right: 10px;">
                                             <p style="font-size: 13px; font-weight: 400; color: #4F555E; margin: 0;">
@@ -245,7 +236,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                                
+                                {% endif %}
                             </td>
                         </tr>
                     </table>
@@ -254,23 +245,22 @@
                         style="width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; color: #4F555E; margin-top: 10px;">
                         <tbody>
                             {% for attribute in product.product_attributes %}
+                            {% if attribute.value %}
                             <tr>
-                                <!-- Attribute Name -->
                                 <td
                                     style="width: 20%; font-size: 13px; font-weight: 400; color: #676D77; line-height: 17.55px; padding: 6px;">
                                     {{ attribute.name }}
                                 </td>
-                                <!-- Attribute Value -->
                                 <td
                                     style="width: 80%; font-size: 13px; font-weight: 400; color: #25282D; line-height: 17.55px; padding: 6px;">
                                     {{ attribute.value }}
                                 </td>
                             </tr>
+                            {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
 
-                    <!-- Divider -->
                     <div class="divider"></div>
                     <div style="page-break-after: always;"></div>
                 </div>
