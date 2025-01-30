@@ -144,16 +144,20 @@
                                     </h2>
                                     {% endif %}
 
-                                    <div style="padding-bottom: 8px;">
-                                        {% if product.product_attributes %}
-                                        {% for attribute in product.product_attributes %}
-                                        {% if attribute.value %}
-                                        <span style="font-size: 16px;">{{ attribute.value }}</span>{% if not loop.last
-                                        %} &#8226; {% endif %}
+                                    <table style="padding-bottom: 8px; border-collapse: collapse;">
+                                        {% if product.collection or product.category %}
+                                        <tr>
+                                            {% set category_name = product.category[0].name if product.category and product.category|length > 0 else '' %}
+                                            {% set collection_name = product.collection[0].name if product.collection and product.collection|length > 0 else '' %}
+                                            
+                                            <td style="font-size: 16px; padding: 4px; text-align: left;">
+                                                {{ category_name }}
+                                                {% if category_name and collection_name %} &#8226; {% endif %}
+                                                {{ collection_name }}
+                                            </td>
+                                        </tr>
                                         {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    {% endif %}
+                                    </table>
 
                                     {% if product.hinge_attributes %}
                                     <div style="margin-top: 6px; margin-bottom: 8px;">
