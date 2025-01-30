@@ -24,6 +24,8 @@
     table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: fixed;
+        page-break-inside: avoid;
     }
 
     th,
@@ -50,8 +52,8 @@
         font-size: 13px;
         color: #4F555E;
         display: inline-block;
+        margin-right: 6px;
     }
-
 </style>
 
 <body>
@@ -68,81 +70,55 @@
     <div>
         <main>
             {% for product_group in products|batch(2) %}
-            <!-- <div>
-                <header>
-                    <table
-                        style="width: 100%; border-bottom: 1px solid #0000001F; padding: 8px 0; border-collapse: collapse;">
-                        <tr>
-                            <td style="width: 25%; text-align: left; vertical-align: middle;">
-                                <img src="Assets/logo.png" alt="Logo"
-                                    style="object-fit: contain; height: 55px; width: auto;">
-                            </td>
-                            <td style="width: 50%; text-align: center; vertical-align: bottom;">
-                                <h1
-                                    style="font-weight: 700; color: #25282D; font-size: 20px; margin: 0; padding-bottom: 10px;">
-                                    {{ sheet_title }}
-                                    Dallas Tradeshow Collection
-                                </h1>
-                            </td>
-                            <td style="width: 25%; text-align: right; vertical-align: bottom;">
-                                <p
-                                    style="font-size: 16px; color: #4F555E; font-weight: 200; margin: 0; padding-bottom: 10px;">
-                                    {{ format_date(updated_at) }}
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-                </header>
-
-                <div class="header-divider"></div>
-            </div> -->
             <div>
                 {% for product in product_group %}
-                <table style="position: relative;">
+                <table>
                     <tr style="width: 100%;">
                         <td style="width: 40%; vertical-align: top;">
-                            <img src="{{ product.product_image_1 }}" alt="Product Image"
-                                style="width: 100%; height: 100%; object-fit:contain; border-radius:8px; padding: 3px; border: 1px solid lightgray">
+                            <img src="{{ product.product_image_1 if product.product_image_1 else 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg' }}"
+                                alt="Product Image"
+                                onerror="this.onerror=null; this.src='https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg';"
+                                style="width: 100%; height: 300px; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray;">
                         </td>
                         <td style="width: 60%;">
 
                             {% if product.sku_id %}
-                            <p style="font-size:15px; font-weight:400; color:#676D77; margin-bottom: 15px;">{{
+                            <p style="font-size:15px; font-weight:400; color:#676D77; padding-bottom: 8px;">{{
                                 product.sku_id }}</p>
                             {% endif %}
 
                             {% if product.product_name %}
-                            <h2 style="font-size:25px; font-weight:800; color:rgba(0,0,0,0.87); margin-bottom: 8px;">
+                            <h2 style="font-size:25px; font-weight:700; color:rgba(0,0,0,0.87); padding-bottom: 8px;">
                                 {{ product.product_name }}
                             </h2>
                             {% endif %}
 
                             <table
-                                style="width: auto; margin: 8px 0 0 0; border-collapse: collapse; border-spacing: 0;">
+                                style="width: auto; padding-top: 0; padding-bottom: 8px; border-collapse: collapse; border-spacing: 0;">
                                 <tr>
                                     {% for attribute in product.product_hinges %}
                                     <td
-                                        style="font-size: 13px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-right: 6px; padding-left: 0px;">
+                                        style="font-size: 13px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-top: 0; padding-right: 6px; padding-left: 0px;">
                                         {{ attribute.variants }}
                                     </td>
 
                                     {% if not loop.last %}
                                     <td
-                                        style="font-size: 13px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-right: 6px; padding-left: 0px;">
+                                        style="font-size: 13px; font-weight: 400; color: #4F555E; line-height: 17.55px; padding-top: 0; padding-right: 6px; padding-left: 0px;">
                                         &#8226;
                                     </td>
                                     {% endif %}
                                     {% endfor %}
                                 </tr>
                             </table>
-                            <div style="margin-top:8px;">
+                            <div style="padding-bottom:8px;">
                                 {% for attribute in product.hinge_attributes %}
                                 <span class="chip">{{ attribute.name }}: {{ attribute.value }}</span>
                                 {% endfor %}
                             </div>
                             {% if product.available %}
                             <table
-                                style="width: auto; background-color: #F2F6E7; padding: 0; border-radius: 12px; margin-top: 8px; border-collapse: collapse; border-spacing: 0;">
+                                style="width: auto; background-color: #F2F6E7; padding: 0; border-radius: 12px; padding-top: 8px; border-collapse: collapse; border-spacing: 0;">
                                 <tr>
                                     <td
                                         style="vertical-align: middle; text-align: center; padding: 4px; padding-left: 10px;">
@@ -159,7 +135,7 @@
                                 </tr>
                             </table>
                             {% endif %}
-                            <table style="margin-top: 8px; border-collapse: collapse; width: auto;">
+                            <table style="padding-bottom: 8px; border-collapse: collapse; width: auto;">
                                 <tr>
                                     {% if product.price_value %}
                                     <td
@@ -203,21 +179,6 @@
                 <div class="divider"></div>
                 {% endfor %}
             </div>
-            <!-- <footer style="background-color: #EEF1F7;">
-                <table>
-                    <tr>
-                        <td style="text-align: left;">
-                            <a href="{{ website }}" style="color: #4F555E; font-size: 11px; font-weight: 400;">{{
-                                website }}
-                                www.testing.com</a>
-                        </td>
-                        <td style="text-align: right;">
-                            <p style="color: #4F555E; font-size: 11px; font-weight: 700;">{{ format_number(loop.index) }}
-                            </p>
-                        </td>
-                    </tr>
-                </table>
-            </footer> -->
             {% if not loop.last %}
             <div style="page-break-after: always;"></div>
             {% endif %}
