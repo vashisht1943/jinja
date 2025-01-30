@@ -108,13 +108,13 @@
                                             style="position: absolute; top: 8px; left: 8px; background: #F0F7ED; color: #25282D; font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 16px; display: flex; align-items: center;">
                                             <span
                                                 style="width: 8px; height: 8px; background: #4CAF50; border-radius: 50%; display: inline-block; margin-right: 6px;"></span>
-                                            Available: {{ product.available_units }} units
+                                            Available: {{ product.inventory.available_quantity }} units
                                         </div>
 
                                         <!-- Product Image -->
                                         <img src="{{ product.product_image_1 }}" alt="Product Image"
                                             onerror="this.onerror=null; this.src= 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg'; "
-                                            style="width: 100%; height: 250px; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray; display: block;">
+                                            style="width: 420px; height: 250px; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray; display: block;">
 
                                     </div>
                                 </td>
