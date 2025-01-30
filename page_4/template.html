@@ -24,6 +24,7 @@
     table {
         width: 50%;
         border-collapse: collapse;
+        
     }
 
     th,
@@ -56,12 +57,9 @@
     }
 
     .chip {
-        padding: 3px 6px;
         background-color: #F2F4F7;
         border-radius: 3px;
-        font-size: 13px;
         color: #4F555E;
-        display: inline-block;
     }
 
     .availability {
@@ -90,10 +88,10 @@
     <!-- Main Container -->
     <div>
         <!-- Header -->
-        
+
         <main>
             {% for product_group in products|batch(4) %}
-            
+
             <table style="width: 100%; border-collapse: collapse; text-align: center;">
                 {% for product_row in product_group|batch(2) %}
                 <tr>
@@ -104,67 +102,74 @@
                             <tr>
                                 <td style="width: 40%; vertical-align: top; position: relative;">
                                     <div style="position: relative; display: inline-block; width: 100%;">
-                                        
+
                                         <!-- Available Chip -->
-                                        <div style="position: absolute; top: 8px; left: 8px; background: #F0F7ED; color: #25282D; font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 16px; display: flex; align-items: center;">
-                                            <span style="width: 8px; height: 8px; background: #4CAF50; border-radius: 50%; display: inline-block; margin-right: 6px;"></span>
+                                        <div
+                                            style="position: absolute; top: 8px; left: 8px; background: #F0F7ED; color: #25282D; font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 16px; display: flex; align-items: center;">
+                                            <span
+                                                style="width: 8px; height: 8px; background: #4CAF50; border-radius: 50%; display: inline-block; margin-right: 6px;"></span>
                                             Available: {{ product.available_units }} units
                                         </div>
-                            
+
                                         <!-- Product Image -->
                                         <img src="{{ product.product_image_1 }}" alt="Product Image"
-                                        onerror="this.onerror=null; this.src= 'https://sourcerer.tech/assets/65475616-8765-47b3-bdb0-cae3e86eb45c'; "
-                                            style="width: 100%; height: 90%; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray; display: block;">
-                                        
+                                            onerror="this.onerror=null; this.src= 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg'; "
+                                            style="width: 100%; height: 250px; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray; display: block;">
+
                                     </div>
                                 </td>
                             </tr>
                             {% endif %}
-                            
+
                             <tr>
                                 <td style="width: 100%; padding: 6px; box-sizing: border-box;">
                                     {% if product.sku_id %}
-                                    <p style="font-size:16px; font-weight:400; color:#676D77; margin-bottom: 5px;">
+                                    <p style="font-size:18px; font-weight:400; color:#676D77; margin-bottom: 5px;">
                                         {{ product.sku_id }}
                                     </p>
                                     {% endif %}
                                     {% if product.product_name %}
-                                    <h2 style="font-size:20px; font-weight:600; color:rgba(0,0,0,0.87); margin-bottom: 6px;">
+                                    <h2
+                                        style="font-size:22px; font-weight:600; color:rgba(0,0,0,0.87); margin-bottom: 8px;">
                                         {{ product.product_name }}
                                     </h2>
                                     {% endif %}
 
-                                    <div style="margin-bottom: 5px;">
-                                    {% if product.product_attributes %}
-                                    {% for attribute in product.product_attributes %}
-                                    {% if attribute.value %}
-                                    <span>{{ attribute.value }}</span>{% if not loop.last %} &#8226; {% endif %}
-                                    {% endif %}
-                                    {% endfor %}
-                                    </div>
-                                    {% endif %}
-
-                                    {% if product.hinge_attributes %}
-                                    <div style="margin-top:6px; margin-bottom: 5px;">
-                                        <!-- Chips -->
-                                        {% for attribute in product.hinge_attributes %}
-                                        <span class="chip" style="font-size: 15px;">{{ attribute.name }}: {{ attribute.value }}</span>
+                                    <div style="padding-bottom: 8px;">
+                                        {% if product.product_attributes %}
+                                        {% for attribute in product.product_attributes %}
+                                        {% if attribute.value %}
+                                        <span style="font-size: 16px;">{{ attribute.value }}</span>{% if not loop.last
+                                        %} &#8226; {% endif %}
+                                        {% endif %}
                                         {% endfor %}
                                     </div>
                                     {% endif %}
 
-
-                                    <table style=" border-collapse: collapse; width: auto; margin-top: 0; margin-bottom: 0;">
+                                    {% if product.hinge_attributes %}
+                                    <div style="margin-top: 6px; margin-bottom: 5px; display: flex; flex-wrap: wrap;">
+                                        {% for attribute in product.hinge_attributes %}
+                                        <div
+                                            style="background-color: #F2F4F7; border-radius: 3px; color: #4F555E; font-size: 16px; padding: 4px 8px; display: inline-block; margin-right: 6px;">
+                                            {{ attribute.name }}: {{ attribute.value }}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <table
+                                        style=" border-collapse: collapse; width: auto; margin-top: 0; margin-bottom: 0;">
                                         <tr>
                                             <!-- Price -->
                                             {% if product.price_value and product.price_currency %}
-                                            <td style="vertical-align: middle; font-size: 16px; font-weight: 400; color: #25282D; text-align: left; padding-right: 0;">
+                                            <td
+                                                style="vertical-align: middle; font-size: 18px; font-weight: 600; color: #25282D; text-align: left; padding-right: 0;">
                                                 {{ product.price_currency }}{{ product.price_value }}
                                             </td>
                                             {% endif %}
                                             <!-- MOQ -->
                                             {% if product.moq %}
-                                            <td style="vertical-align: middle; font-size: 16px; font-weight: 400; color: #4F555E; text-align: left;">
+                                            <td
+                                                style="vertical-align: middle; font-size: 16px; font-weight: 400; color: #4F555E; text-align: left;">
                                                 (MOQ - {{ product.moq }})
                                             </td>
                                             {% endif %}
@@ -172,20 +177,23 @@
                                     </table>
                                 </td>
                             </tr>
-                            
+
                         </table>
 
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 0; font-size: 14px; color: #4F555E;">
+                        <table
+                            style="width: 100%; border-collapse: collapse; margin-top: 0; font-size: 14px; color: #4F555E; margin-bottom: 8px;">
                             <tbody>
                                 {% for attribute in product.product_attributes %}
-                                <tr>
+                                <tr style="margin-bottom: 3px;">
                                     <!-- Attribute Name -->
                                     {% if attribute.value %}
-                                    <td style=" width: 20%; font-size: 14px; font-weight: 400; color: #676D77; line-height: 15px; padding: 4px; ">
+                                    <td
+                                        style=" width: 20%; font-size: 16px; font-weight: 400; color: #676D77; line-height: 15px; padding: 4px; ">
                                         {{ attribute.name }}
                                     </td>
                                     <!-- Attribute Value -->
-                                    <td style=" width: 80%; font-size: 14px; font-weight: 400; color: #25282D; line-height: 15px; padding: 4px;">
+                                    <td
+                                        style=" width: 80%; font-size: 16px; font-weight: 400; color: #25282D; line-height: 15px; padding: 4px;">
                                         {{ attribute.value }}
                                     </td>
                                     {% endif %}
@@ -198,11 +206,11 @@
                 </tr>
                 {% endfor %}
             </table>
-           
+
             <div style="page-break-after: always;"></div>
             {% endfor %}
         </main>
-        
+
     </div>
 </body>
 
