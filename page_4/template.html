@@ -114,12 +114,14 @@
                                     <div style="position: relative; display: inline-block; width: 275px;">
 
                                         <!-- Available Chip -->
+                                        {% if product.inventory.total_available %}
                                         <div
                                             style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 16px; display: flex; align-items: center; line-height: 14.85px; overflow: hidden;">
                                             <span
                                             style="width: 8px; height: 8px; background: #7DA50E; border-radius: 50%; display: inline-block; margin-right: 6px; "></span>
                                             Available: {{ product.inventory.total_available | int }} units
                                         </div>
+                                        {% endif %}
 
                                         <!-- Product Image -->
                                         <img src="{{ product.product_image_1 }}" alt="Product Image"
@@ -181,6 +183,7 @@
                                         {% endfor %}
                                     </div>
                                     {% endif %}
+                                    {% if product.price_value and product.price_currency %}
                                     <table
                                     style=" border-collapse: collapse; margin-bottom: 6px; width: fit-content;">
                                         <tr>
@@ -200,6 +203,7 @@
                                             {% endif %}
                                         </tr>
                                     </table>
+                                    {% endif %}
                                 </td>
                             </tr>
 
@@ -228,6 +232,9 @@
                         </table>
                     </td>
                     {% endfor %}
+                    {% if product_row|length == 1 %}
+                    <td style="width: 50%;"></td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </table>
