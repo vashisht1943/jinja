@@ -55,12 +55,6 @@
         margin: 2px 0;
     }
 
-    .chip {
-        background-color: #F2F4F7;
-        border-radius: 3px;
-        color: #4F555E;
-    }
-
     .availability {
         display: flex;
         gap: 5px;
@@ -77,10 +71,9 @@
         border-radius: 50%;
     }
     .chip {
-        padding: 3px 4px;
+        padding: 2px 4px;
         background-color: #F2F4F7;
         border-radius: 3px;
-        font-size: 15px;
         color: #4F555E;
         display: inline-block;
     }
@@ -99,24 +92,23 @@
     <div>
         <!-- Header -->
 
-        <main style="padding-left: 16px; padding-right: 16px;">
+        <main style="padding-left: 16px; padding-right: 4px; padding-top: 12px;">
             {% for product_group in products|batch(4) %}
 
             <table style="width: 100%; border-collapse: collapse; text-align: center;">
                 {% for product_row in product_group|batch(2) %}
-                <tr style="margin-bottom: 20px;">
+                <tr>
                     {% for product in product_row %}
-                    <td style="width: 50%; padding: 5px;">
+                    <td style="width: 50%; padding-bottom: 20px; padding-right: 12px;">
                         <table style="width: 100%; border-collapse: collapse;">
                             {% if product.product_image_1 %}
-                            <tr>
-                                <td style="width: 40%; height: 165px ;vertical-align: top; position: relative; padding-bottom: 10px;">
-                                    <div style="position: relative; display: inline-block; width: 275px;">
-
+                            <tr style="width: 100%;">
+                                <td style="width: 100%; height: 165px ;vertical-align: top; position: relative; padding-bottom: 10px;">
+                                    <div style="position: relative; display: inline-block; width: 100%;">
                                         <!-- Available Chip -->
                                         {% if product.inventory.total_available %}
                                         <div
-                                            style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 16px; display: flex; align-items: center; line-height: 14.85px; overflow: hidden;">
+                                            style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 16px; display: flex; align-items: center;  overflow: hidden;">
                                             <span
                                             style="width: 8px; height: 8px; background: #7DA50E; border-radius: 50%; display: inline-block; margin-right: 6px; "></span>
                                             Available: {{ product.inventory.total_available | int }} units
@@ -136,34 +128,34 @@
                             <tr>
                                 <td style="width: 100%; box-sizing: border-box;">
                                     {% if product.sku_id %}
-                                    <p style="font-size:11px; font-weight:400; color:#676D77; margin-bottom: 6px; line-height: 14.85px; ">
+                                    <p style="font-size:11px; font-weight:400; color:#676D77; margin-bottom: 6px;  ">
                                         {{ product.sku_id }}
                                     </p>
                                     {% endif %}
                                     {% if product.product_name %}
                                     <h2
-                                        style="font-size:12px; font-weight:700; color: #000000DE; margin-bottom: 6px; line-height: 16.2px;">
+                                        style="font-size:12px; font-weight:700; color: #000000DE; margin-bottom: 6px; ">
                                         {{ product.product_name }}
                                     </h2>
                                     {% endif %}
 
                                     {% if product.category and product.category | length > 0 or product.collection and product.collection | length > 0 %}
-                                    <table style="border-collapse: collapse; border-spacing: 0; width: fit-content; margin-bottom: 6px;">
+                                    <table style="width: auto; border-collapse: collapse;  border-spacing: 0; margin-bottom: 6px;">
                                         <tr>
                                             {% if product.category and product.category | length > 0 %}
-                                            <td style="font-size: 11px; color: #4F555E; padding: 0; padding-right: 6px; white-space: nowrap; font-weight: 400; line-height: 14.85px;">
+                                            <td style="font-size: 11px; color: #4F555E; padding-right: 6px; font-weight: 400; ">
                                                 {{ product.category[0].name }}
                                             </td>
                                             {% endif %}
                                     
                                             {% if product.category and product.category | length > 0 and product.collection and product.collection | length > 0 %}
-                                            <td style="font-size: 12px; color: #4F555E; padding: 0px; font-weight: 400; line-height: 16.2px;">
+                                            <td style="font-size: 12px; color: #4F555E; font-weight: 400; padding-right: 6px;">
                                                 &#8226;
                                             </td>
                                             {% endif %}
                                     
                                             {% if product.collection and product.collection | length > 0 %}
-                                            <td style="font-size: 11px; color: #4F555E; padding: 0; white-space: nowrap; padding-left: 6px; font-weight: 400; line-height: 14.85px;">
+                                            <td style="font-size: 11px; color: #4F555E; font-weight: 400; ">
                                                 {{ product.collection[0].name }}
                                             </td>
                                             {% endif %}
@@ -177,7 +169,7 @@
                                     <div style="padding-bottom: 6px;">
                                         {% for attribute in product.hinge_attributes %}
                                         <div
-                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                        class="chip" style=" font-size: 11px; padding-right: 4px;">
                                             {{ attribute.value }}
                                         </div>
                                         {% endfor %}
@@ -217,12 +209,12 @@
                                     <!-- Attribute Name -->
                                     {% if attribute.value %}
                                     <td
-                                    style=" width: 30%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px; padding-bottom: 6px; ">
+                                    style=" width: 30%; font-size: 11px; font-weight: 400; color: #676D77;  padding-bottom: 6px; ">
                                         {{ attribute.name }}
                                     </td>
                                     <!-- Attribute Value -->
                                     <td
-                                    style=" width: 70%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px; padding-bottom: 6px; ">
+                                    style=" width: 70%; font-size: 11px; font-weight: 400; color: #25282D; padding-bottom: 6px; ">
                                         {{ attribute.value }}
                                     </td>
                                     {% endif %}
