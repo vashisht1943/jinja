@@ -107,37 +107,29 @@
                             <tr style="width: 100%;">
                                 <td>
                                     <div style="padding-bottom: 10px;">
-                                        <div
-                                            style="position: relative; width: 100%; border-radius: 8px; border: 1px solid lightgray; overflow: hidden;">
-
-                                            {% if product.product_image_1 %}
-                                            <div style="position: relative; width: 100%; height: 165px; 
-                                                        background-image: url('{{ product.product_image_1 }}'); 
-                                                        background-size: contain; 
-                                                        background-repeat: no-repeat; 
-                                                        background-position: center;">
-                                                {% else %}
-                                                <div style="position: relative; width: 100%; height: 165px; 
-                                                                background-image: url('https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg'); 
-                                                                background-size: contain; background-repeat: no-repeat; background-position: center;">
+                                        <div style="position: relative; width: 100%; border-radius: 8px; border: 1px solid lightgray; overflow: hidden;">
+                                            <div style="width: 100%; height: 165px; ">
+                                                <div style="width: 100%; height: 100%; background: transparent;">
+                                                    <img src="{{ product.product_image_1 if product.product_image_1 else 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg' }}" 
+                                                         alt="Product Image"
+                                                         onerror="this.onerror=null; this.src='https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg';"
+                                                         style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
                                                 </div>
-                                                {% endif %}
-
-                                                {% if product.inventory.total_available %}
-                                                <div
-                                                    style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; 
-                                                            color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; 
-                                                            border-radius: 44px; display: flex; align-items: center;  overflow: hidden;">
-                                                    <span style="width: 8px; height: 8px; background: #7DA50E; border-radius: 44px; 
-                                                                 display: inline-block; margin-right: 6px;"></span>
-                                                    Available: {{ product.inventory.total_available | int }} units
-                                                </div>
-                                                {% endif %}
-
                                             </div>
+                                
+                                            {% if product.inventory.total_available %}
+                                            <div style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; 
+                                                        color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; 
+                                                        border-radius: 44px; display: flex; align-items: center; overflow: hidden;">
+                                                <span style="width: 8px; height: 8px; background: #7DA50E; border-radius: 44px; 
+                                                             display: inline-block; margin-right: 6px;"></span>
+                                                Available: {{ product.inventory.total_available | int }} units
+                                            </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </td>
+                                
                             </tr>
 
 
