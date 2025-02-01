@@ -77,6 +77,8 @@
         border-radius: 3px;
         color: #4F555E;
         display: inline-block;
+        white-space: nowrap;
+        margin: 2px;
     }
 
     ul,
@@ -119,12 +121,12 @@
                                 
                                             {% if product.inventory.total_available %}
                                             <div style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; 
-                                                        color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; 
-                                                        border-radius: 44px; display: flex; align-items: center; overflow: hidden;">
-                                                <span style="width: 8px; height: 8px; background: #7DA50E; border-radius: 44px; 
-                                                             display: inline-block; margin-right: 6px;"></span>
-                                                Available: {{ product.inventory.total_available | int }} units
-                                            </div>
+                                            color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; 
+                                            border-radius: 44px; display: inline-block; white-space: nowrap; overflow: hidden;">
+                                    <span style="width: 8px; height: 8px; background: #7DA50E; border-radius: 44px; 
+                                                 display: inline-block; margin-right: 6px; vertical-align: middle;"></span>
+                                    <span style="vertical-align: middle;">Available: {{ product.inventory.total_available | int }} units</span>
+                                </div>                                
                                             {% endif %}
                                         </div>
                                     </div>
@@ -178,13 +180,13 @@
 
 
                                     {% if product.hinge_attributes %}
-                                    <div style="padding-bottom: 6px;">
+                                    <div style="padding-bottom: 6px; font-size: 0;">
                                         {% for attribute in product.hinge_attributes %}
-                                        <div class="chip" style=" font-size: 11px; padding-right: 4px;">
-                                            {{ attribute.value }}
-                                        </div>
+                                            <span class="chip" style="font-size: 11px;">
+                                                {{ attribute.value }}
+                                            </span>
                                         {% endfor %}
-                                    </div>
+                                    </div>                                    
                                     {% endif %}
                                     {% if product.price_value and product.price_currency %}
                                     <table style=" border-collapse: collapse; margin-bottom: 6px; width: fit-content;">
@@ -199,7 +201,7 @@
                                             <!-- MOQ -->
                                             {% if product.moq %}
                                             <td style="font-size: 11px; font-weight: 400; color: #676D77;">
-                                                (MOQ - {{ product.moq }})
+                                                (MOQ-{{ product.moq }})
                                             </td>
                                             {% endif %}
                                         </tr>
