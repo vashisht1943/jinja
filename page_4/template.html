@@ -1,256 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
-</head>
-
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+  <style>
     @page {
-        size: A4;
-        margin: 15mm;
+      size: A4;
+      margin: 15mm;
     }
-
     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
     body {
-        font-family: 'Satoshi', sans-serif;
+      font-family: 'Satoshi', sans-serif;
     }
-
     table {
-        width: 50%;
-        border-collapse: collapse;
-
+      width: 50%;
+      border-collapse: collapse;
     }
-
     th,
     td {
-        text-align: left;
-        vertical-align: top;
+      text-align: left;
+      vertical-align: top;
     }
-
     header {
-        border-bottom: 1px solid #0000001F;
+      border-bottom: 0.35mm solid #0000001F;
     }
-
     footer {
-        background-color: #EEF1F7;
-        padding: 5px 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      background-color: #EEF1F7;
+      padding: 1.76mm 5.65mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
     .divider {
-        border: 1px dashed #B5BBC3;
-        margin: 16px 0;
+      border: 0.35mm dashed #B5BBC3;
+      margin: 5.65mm 0;
     }
-
     .header-divider {
-        border: 1px solid #B5BBC3;
-        margin: 2px 0;
+      border: 0.35mm solid #B5BBC3;
+      margin: 0.70mm 0;
     }
-
     .availability {
-        display: flex;
-        gap: 5px;
-        background-color: #F2F6E7;
-        padding: 3px 8px;
-        align-items: center;
-        border-radius: 44px;
+      display: flex;
+      gap: 1.76mm;
+      background-color: #F2F6E7;
+      padding: 1.06mm 2.82mm;
+      align-items: center;
+      border-radius: 15.52mm;
     }
-
     .green-dot {
-        height: 8px;
-        width: 8px;
-        background-color: #7DA50E;
-        border-radius: 50%;
+      height: 2.82mm;
+      width: 2.82mm;
+      background-color: #7DA50E;
+      border-radius: 50%;
     }
-
     .chip {
-        padding: 2px 4px;
-        background-color: #F2F4F7;
-        border-radius: 3px;
-        color: #4F555E;
-        display: inline-block;
-        white-space: nowrap;
-        margin: 2px;
+      padding: 0.70mm 1.41mm;
+      background-color: #F2F4F7;
+      border-radius: 1.06mm;
+      color: #4F555E;
+      display: inline-block;
+      white-space: nowrap;
+      margin: 0.70mm;
     }
-
     ul,
     ol {
-        list-style-position: inside;
+      list-style-position: inside;
     }
-</style>
-
+    .avoid {
+      page-break-inside: avoid !important;
+      margin: 1.41mm 0;
+    }
+  </style>
+</head>
 <body>
-    {% macro format_date(date_string) %}
-    {% set date_part = date_string.split('T')[0] %} {# Extract the date part (YYYY-MM-DD) #}
-    {% set year, month, day = date_part.split('-') %} {# Split into year, month, and day #}
-    {{ month }}/{{ day }}/{{ year }} {# Format as MM/DD/YYYY #}
-    {% endmacro %}
-    <!-- Main Container -->
-    <div>
-        <!-- Header -->
-
-        <main style="padding-left: 16px; padding-right: 4px; padding-top: 12px;">
-            {% for product_group in products|batch(4) %}
-
-            <table style="width: 100%; border-collapse: collapse; text-align: center;">
-                {% for product_row in product_group|batch(2) %}
-                <tr>
-                    {% for product in product_row %}
-                    <td style="width: 50%; padding-bottom: 20px; padding-right: 12px;">
-                        <table style="width: 100%; border-collapse: separate; ">
-                            <tr style="width: 100%;">
-                                <td>
-                                    <div style="padding-bottom: 10px;">
-                                        <div style="position: relative; width: 100%; border-radius: 8px; border: 1px solid lightgray; overflow: hidden;">
-                                            <div style="width: 100%; height: 165px; ">
-                                                <div style="width: 100%; height: 100%; background: transparent;">
-                                                    <img src="{{ product.product_image_1 if product.product_image_1 else 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg' }}" 
-                                                         alt="Product Image"
-                                                         onerror="this.onerror=null; this.src='https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg';"
-                                                         style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;">
-                                                </div>
-                                            </div>
-                                
-                                            {% if product.inventory.total_available %}
-                                            <div style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; 
-                                            color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; 
-                                            border-radius: 44px; display: inline-block; white-space: nowrap; overflow: hidden;">
-                                    <span style="width: 8px; height: 8px; background: #7DA50E; border-radius: 44px; 
-                                                 display: inline-block; margin-right: 6px; vertical-align: middle;"></span>
-                                    <span style="vertical-align: middle;">Available: {{ product.inventory.total_available | int }} units</span>
-                                </div>                                
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </td>
-                                
-                            </tr>
-
-
-                            <tr>
-                                <td style="width: 100%; box-sizing: border-box;">
-                                    {% if product.sku_id %}
-                                    <p style="font-size:11px; font-weight:400; color:#676D77; margin-bottom: 6px;  ">
-                                        {{ product.sku_id }}
-                                    </p>
-                                    {% endif %}
-                                    {% if product.product_name %}
-                                    <h2 style="font-size:12px; font-weight:700; color: #000000DE; margin-bottom: 6px; ">
-                                        {{ product.product_name }}
-                                    </h2>
-                                    {% endif %}
-
-                                    {% if product.category and product.category | length > 0 or product.collection and
-                                    product.collection | length > 0 %}
-                                    <table
-                                        style="width: auto; border-collapse: collapse;  border-spacing: 0; margin-bottom: 6px;">
-                                        <tr>
-                                            {% if product.category and product.category | length > 0 %}
-                                            <td
-                                                style="font-size: 11px; color: #4F555E; padding-right: 6px; font-weight: 400; ">
-                                                {{ product.category[0].name }}
-                                            </td>
-                                            {% endif %}
-
-                                            {% if product.category and product.category | length > 0 and
-                                            product.collection and product.collection | length > 0 %}
-                                            <td
-                                                style="font-size: 12px; color: #4F555E; font-weight: 400; padding-right: 6px;">
-                                                &#8226;
-                                            </td>
-                                            {% endif %}
-
-                                            {% if product.collection and product.collection | length > 0 %}
-                                            <td style="font-size: 11px; color: #4F555E; font-weight: 400; ">
-                                                {{ product.collection[0].name }}
-                                            </td>
-                                            {% endif %}
-                                        </tr>
-                                    </table>
-                                    {% endif %}
-
-
-
-                                    {% if product.hinge_attributes %}
-                                    <div style="padding-bottom: 6px; font-size: 0;">
-                                        {% for attribute in product.hinge_attributes %}
-                                            <span class="chip" style="font-size: 11px;">
-                                                {{ attribute.value }}
-                                            </span>
-                                        {% endfor %}
-                                    </div>                                    
-                                    {% endif %}
-                                    {% if product.price_value and product.price_currency %}
-                                    <table style=" border-collapse: collapse; margin-bottom: 6px; width: fit-content;">
-                                        <tr>
-                                            <!-- Price -->
-                                            {% if product.price_value and product.price_currency %}
-                                            <td
-                                                style="font-size: 12px; font-weight: 700; color: rgba(0, 0, 0, 0.87); padding-right: 10px;">
-                                                {{ product.price_currency }}{{ product.price_value }}
-                                            </td>
-                                            {% endif %}
-                                            <!-- MOQ -->
-                                            {% if product.moq %}
-                                            <td style="font-size: 11px; font-weight: 400; color: #676D77;">
-                                                (MOQ-{{ product.moq }})
-                                            </td>
-                                            {% endif %}
-                                        </tr>
-                                    </table>
-                                    {% endif %}
-                                </td>
-                            </tr>
-
-                        </table>
-
-                        <table style="width: 100%; border-collapse: collapse; ">
-                            <tbody>
-                                {% for attribute in product.product_attributes %}
-                                <tr>
-                                    <!-- Attribute Name -->
-                                    {% if attribute.value %}
-                                    <td
-                                        style=" width: 25%; font-size: 11px; font-weight: 400; color: #676D77;  padding-bottom: 6px; ">
-                                        {{ attribute.name }}
-                                    </td>
-                                    <!-- Attribute Value -->
-                                    <td
-                                        style=" width: 75%; font-size: 11px; font-weight: 400; color: #25282D; padding-bottom: 6px; ">
-                                        {{ attribute.value }}
-                                    </td>
-                                    {% endif %}
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </td>
+  {% macro format_date(date_string) %}
+  {% set date_part = date_string.split('T')[0] %}
+  {% set year, month, day = date_part.split('-') %}
+  {{ month }}/{{ day }}/{{ year }}
+  {% endmacro %}
+  <div>
+    <main style="padding-left: 5.65mm; padding-right: 1.41mm; padding-top: 4.23mm;">
+      {% for product_group in products|batch(4) %}
+      <table style="width: 100%; border-collapse: collapse; text-align: center;">
+        {% for product_row in product_group|batch(2) %}
+        <tr>
+          {% for product in product_row %}
+          <td style="width: 50%; padding-bottom: 7.06mm; padding-right: 4.23mm;">
+            <table style="width: 100%; border-collapse: separate;">
+              <tr style="width: 100%;">
+                <td>
+                  <div style="padding-bottom: 3.53mm;">
+                    <div style="position: relative; width: 100%; border-radius: 2.82mm; border: 0.35mm solid lightgray; overflow: hidden;">
+                      <div style="width: 100%; height: 68.22mm;">
+                        <div style="width: 100%; height: 100%; background: transparent;">
+                          <img
+                            src="{{ product.product_image_1 if product.product_image_1 else 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg' }}"
+                            alt="Product Image"
+                            onerror="this.onerror=null; this.src='https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg';"
+                            style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;"
+                          >
+                        </div>
+                      </div>
+                      {% if product.inventory.total_available %}
+                      <div style="position: absolute; top: 2.82mm; left: 2.82mm; background: #F2F6E7; color: #4F555E; font-size: 3.88mm; font-weight: 500; padding: 1.06mm 2.82mm; border-radius: 15.52mm; display: inline-block; white-space: nowrap; overflow: hidden;">
+                        <span style="width: 2.82mm; height: 2.82mm; background: #7DA50E; border-radius: 44px; display: inline-block; margin-right: 2.12mm; vertical-align: middle;"></span>
+                        <span style="vertical-align: middle;">Available: {{ product.inventory.total_available | int }} units</span>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 100%; box-sizing: border-box;">
+                  {% if product.sku_id %}
+                  <p style="font-size: 3.88mm; font-weight: 400; color: #676D77; margin-bottom: 2.12mm;">
+                    {{ product.sku_id }}
+                  </p>
+                  {% endif %}
+                  {% if product.product_name %}
+                  <h2 style="font-size: 4.23mm; font-weight: 700; color: #000000DE; margin-bottom: 2.12mm;">
+                    {{ product.product_name }}
+                  </h2>
+                  {% endif %}
+                  {% if product.category and product.category|length > 0 or product.collection and product.collection|length > 0 %}
+                  <table style="width: auto; border-collapse: collapse; border-spacing: 0; margin-bottom: 2.12mm;">
+                    <tr>
+                      {% if product.category and product.category|length > 0 %}
+                      <td style="font-size: 3.88mm; color: #4F555E; padding-right: 2.12mm; font-weight: 400;">
+                        {{ product.category[0].name }}
+                      </td>
+                      {% endif %}
+                      {% if product.category and product.category|length > 0 and product.collection and product.collection|length > 0 %}
+                      <td style="font-size: 4.23mm; color: #4F555E; font-weight: 400; padding-right: 2.12mm;">
+                        &#8226;
+                      </td>
+                      {% endif %}
+                      {% if product.collection and product.collection|length > 0 %}
+                      <td style="font-size: 3.88mm; color: #4F555E; font-weight: 400;">
+                        {{ product.collection[0].name }}
+                      </td>
+                      {% endif %}
+                    </tr>
+                  </table>
+                  {% endif %}
+                  {% if product.hinge_attributes %}
+                  <div style="padding-bottom: 2.12mm; font-size: 0;">
+                    {% for attribute in product.hinge_attributes %}
+                    <span class="chip" style="font-size: 3.88mm;">
+                      {{ attribute.value }}
+                    </span>
                     {% endfor %}
-                    {% if product_row|length == 1 %}
-                    <td style="width: 50%;"></td>
+                  </div>
+                  {% endif %}
+                  {% if product.price_value and product.price_currency %}
+                  <table style="border-collapse: collapse; margin-bottom: 2.12mm; width: auto;">
+                    <tr>
+                      {% if product.price_value and product.price_currency %}
+                      <td style="font-size: 4.23mm; font-weight: 700; color: rgba(0, 0, 0, 0.87); padding-right: 3.53mm;">
+                        {{ product.price_currency }}{{ product.price_value }}
+                      </td>
+                      {% endif %}
+                      {% if product.moq %}
+                      <td style="font-size: 3.88mm; font-weight: 400; color: #676D77;">
+                        (MOQ-{{ product.moq }})
+                      </td>
+                      {% endif %}
+                    </tr>
+                  </table>
+                  {% endif %}
+                </td>
+              </tr>
+            </table>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tbody>
+                {% for attribute in product.product_attributes %}
+                <tr>
+                  {% if attribute.value %}
+                  <td style="width: 25%; font-size: 3.88mm; font-weight: 400; color: #676D77; padding-bottom: 2.12mm;">
+                    {{ attribute.name }}
+                  </td>
+                  <td style="width: 75%; font-size: 3.88mm; font-weight: 400; color: #25282D; padding-bottom: 2.12mm;">
+                    {% if attribute.value.startswith("https://") %}
+                    <a href="{{ attribute.value }}" target="_blank">{{ attribute.value }}</a>
+                    {% else %}
+                    {{ attribute.value }}
                     {% endif %}
+                  </td>
+                  {% endif %}
                 </tr>
                 {% endfor %}
+              </tbody>
             </table>
+          </td>
+          {% endfor %}
+          {% if product_row|length == 1 %}
+          <td style="width: 50%;"></td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </table>
 
-            <div style="page-break-after: always;"></div>
-            {% endfor %}
-        </main>
-
-    </div>
+      {% if not loop.last %}
+      <div style="page-break-after: always;"></div>
+      {% endif %}
+      {% endfor %}
+    </main>
+  </div>
 </body>
-
-<style type="text/css">
-    .avoid {
-        page-break-inside: avoid !important;
-        margin: 4px 0 4px 0;
-    }
-</style>
+</html>
