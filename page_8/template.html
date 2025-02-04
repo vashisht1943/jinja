@@ -1,182 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
-</head>
-
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+  <style>
     @page {
-        size: A4;
-        margin: 15mm;
+      size: A4;
+      margin: 15mm;
     }
-
     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
     body {
-        font-family: 'Satoshi', sans-serif;
+      font-family: 'Satoshi', sans-serif;
     }
-
     table {
-        width: 50%;
-        border-collapse: collapse;
-        table-layout: fixed;
+      width: 50%;
+      border-collapse: collapse;
+      table-layout: fixed;
     }
-
     th,
     td {
-        padding: 8px;
-        text-align: left;
-        vertical-align: top;
+      text-align: left;
+      vertical-align: top;
     }
-
     header {
-        border-bottom: 1px solid #0000001F;
+      /* 1px => 0.35mm */
+      border-bottom: 0.35mm solid #0000001F;
     }
-
     footer {
-        background-color: #EEF1F7;
-        padding: 5px 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      background-color: #EEF1F7;
+      /* padding: 5px 16px => ~1.76mm 5.65mm */
+      padding: 1.76mm 5.65mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
     .divider {
-        border: 1px dashed #B5BBC3;
-        margin: 16px 0;
+      /* 1px => 0.35mm, margin:16px => ~5.65mm */
+      border: 0.35mm dashed #B5BBC3;
+      margin: 5.65mm 0;
     }
-
     .header-divider {
-        border: 1px solid #B5BBC3;
-        margin: 2px 0;
+      /* 1px => 0.35mm, margin:2px => ~0.70mm */
+      border: 0.35mm solid #B5BBC3;
+      margin: 0.70mm 0;
     }
-
     .chip {
-        padding: 3px 6px;
-        background-color: #F2F4F7;
-        border-radius: 3px;
-        font-size: 13px;
-        color: #4F555E;
-        display: inline-block;
+      /* padding:2px => 0.70mm, 4px => 1.41mm */
+      padding: 0.70mm 1.41mm;
+      background-color: #F2F4F7;
+      /* border-radius:3px => 1.06mm */
+      border-radius: 1.06mm;
+      /* font-size:13px => ~4.59mm */
+      font-size: 4.59mm;
+      color: #4F555E;
+      display: inline-block;
+      /* margin-right:4px => 1.41mm */
+      margin-right: 1.41mm;
+      margin-bottom: 1.41mm;
     }
-
+    .chip-container {
+      display: inline-block;
+      
+    }
     .availability {
-        display: flex;
-        gap: 5px;
-        background-color: #F2F6E7;
-        padding: 3px 8px;
-        align-items: center;
-        border-radius: 44px;
+      background-color: #F2F6E7;
+      /* padding:3px => 1.06mm, 8px => 2.82mm */
+      padding: 1.06mm 2.82mm;
+      /* border-radius:44px => ~15.52mm */
+      border-radius: 15.52mm;
+      display: inline-block;
+      white-space: nowrap;
     }
-
     .green-dot {
-        height: 8px;
-        width: 8px;
-        background-color: #7DA50E;
-        border-radius: 50%;
+      /* height:8px => 2.82mm, width:8px => 2.82mm, margin-right:5px => 1.76mm */
+      height: 2.82mm;
+      width: 2.82mm;
+      background-color: #7DA50E;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 1.76mm;
     }
-</style>
-
-<body>
-    {% macro format_date(date_string) %}
-    {% set date_part = date_string.split('T')[0] %} {# Extract the date part (YYYY-MM-DD) #}
-    {% set year, month, day = date_part.split('-') %} {# Split into year, month, and day #}
-    {{ month }}/{{ day }}/{{ year }} {# Format as MM/DD/YYYY #}
-    {% endmacro %}
-    <div>
-        <main>
-            {% for product_group in products|batch(8) %}
-            <table style="width: 100%; border-collapse: collapse; text-align: center;">
-                {% for product_row in product_group|batch(2) %}
-                <tr style="width: 50%;">
-                    {% for product in product_row %}
-                    <td style="width: 50%; padding: 5px;">
-                        <table style="width: 100%; height: 100%;">
-                            <tr style="width: 100%; height: 200px;">
-                                <td style="width: 40%; height: 100%; vertical-align: top; box-sizing: border-box; ">
-                                    <img src="{{ product.product_image_1 }}" alt="Product Image" 
-                                        onerror="this.onerror=null; this.src= 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg'; "
-                                        style="width: 150px; height: 140px; object-fit: contain; padding: 2px; border-radius: 10px; border: 1px solid lightgray; ">
-                                </td>
-                                <td style="width: 60%; ">
-                                    {% if product.sku_id %}
-                                    <p style="font-size:16px; font-weight:400; color:#676D77; padding-bottom: 6px;">
-                                        {{product.sku_id }}</p>
-                                    {% endif %}
-                                    {% if product.product_name %}
-                                    <h2 style="font-size:20px; font-weight:600; color:rgba(0,0,0,0.87); margin-bottom: 2px;">
-                                        {{ product.product_name }}
-                                    </h2>
-                                    {% endif %}
-
-                                    <table style="margin-top: 6px; border-collapse: collapse; width: auto;">
-                                        <tr>
-                                            {% if product.price_value %}
-                                            <td
-                                                style="vertical-align: middle; font-size: 16px; font-weight: 600; color: #25282D; text-align: left; padding-right: 0;">
-                                                {{ product.price_currency }}{{ product.price_value }}
-                                            </td>
-                                            {% endif %}
-                                            <td
-                                            style="vertical-align: middle; font-size: 16px; font-weight: 400; color: #4F555E; text-align: left;">
-                                                {% if product.moq %}
-                                                (MOQ - {{ product.moq }})
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                    </table>
-                                
-                                    {% if product.hinge_attributes %}
-                                    <div style="margin-top:6px;">
-                                        {% for attribute in product.hinge_attributes %}
-                                        <span class="chip" style="font-size: 15px; margin-right: 6px; margin-bottom: 4px;">
-                                            {{ attribute.name }}: {{ attribute.value }}</span>
-                                        {% endfor %}
-                                    </div>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        </table>
-        
-                        <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #4F555E; margin-bottom: 50px;">
-                            <tbody>
-                                {% for attribute in product.product_attributes %}
-                                {% if attribute.value %}
-                                <tr>
-                                    <td style=" width: 20%; font-size: 14px; font-weight: 400; color: #676D77; line-height: 15px; padding: 4px;">
-                                        {{ attribute.name }}
-                                    </td>
-                                    <td style=" width: 80%; font-size: 14px; font-weight: 400; color: #25282D; line-height: 15px; padding: 4px;">
-                                        {{ attribute.value }}
-                                    </td>
-                                </tr>
-                                {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </td>
-                    {% endfor %}
-                    {% if product_row|length == 1 %}
-                    <td style="width: 50%;"></td>
-                    {% endif %}            
-                </tr>
-                {% endfor %}
-            </table>
-
-            <div style="page-break-after: always;"></div>
-            {% endfor %}
-        </main>
-    </div>
-</body>
-
-<style type="text/css">
+    ul,
+    ol {
+      list-style-position: inside;
+    }
     .avoid {
-        page-break-inside: avoid !important;
-        margin: 4px 0 4px 0;
+      page-break-inside: avoid !important;
+      /* margin:4px => ~1.41mm */
+      margin: 1.41mm 0;
     }
-</style>
+  </style>
+</head>
+<body>
+  {% macro format_date(date_string) %}
+  {% set date_part = date_string.split('T')[0] %}
+  {% set year, month, day = date_part.split('-') %}
+  {{ month }}/{{ day }}/{{ year }}
+  {% endmacro %}
+  <div>
+    <!-- padding-left:22px => ~7.76mm; padding-top:16.33px => ~5.77mm -->
+    <main style="padding-left: 7.76mm; padding-top: 5.77mm; ">
+      {% for product_group in products|batch(8) %}
+      <table style="width: 100%; border-collapse: collapse; text-align: center;">
+        {% for product_row in product_group|batch(2) %}
+        <tr style="width: 100%;">
+          {% for product in product_row %}
+          <!-- padding-bottom:32px => ~11.29mm; padding-right:16px => ~5.65mm -->
+          <td style="width: 50%; padding-bottom: 11.29mm; padding-right: 5.65mm;">
+            <!-- margin-bottom:8px => ~2.82mm -->
+            <table style="width: 100%; height: 100%; margin-bottom: 1.82mm;">
+              <tr style="width: 100%;">
+                <!-- width:40%; padding-right:10px => ~3.53mm -->
+                <td style="width: 40%; padding-right: 3.53mm; text-align: center; vertical-align: top;">
+                  <div style="padding-bottom: 3.53mm;">
+                    <div style="position: relative; width: 100%; border-radius: 2.82mm; border: 0.35mm solid lightgray; overflow: hidden;">
+                      <div style="width: 100%; height: 35.28mm; text-align: center; line-height: 35.28mm;">
+                        <img
+                          src="{{ product.product_image_1 if product.product_image_1 else 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg' }}"
+                          alt="Product Image"
+                          onerror="this.onerror=null; this.src='https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg';"
+                          style="max-width: 100%; max-height: 100%; object-fit: contain; vertical-align: middle;"
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td style="width: 60%;">
+                  <!-- font-size:11px => ~3.88mm; padding-bottom:6px => 2.12mm -->
+                  {% if product.sku_id %}
+                  <p style="font-size: 3.88mm; font-weight: 400; color:#676D77; padding-bottom: 2.12mm;">
+                    {{ product.sku_id }}
+                  </p>
+                  {% endif %}
+                  <!-- font-size:12px => ~4.23mm; padding-bottom:6px => 2.12mm -->
+                  {% if product.product_name %}
+                  <h2 style="font-size: 4.23mm; font-weight: 700; color:rgba(0,0,0,0.87); padding-bottom: 2.12mm;">
+                    {{ product.product_name }}
+                  </h2>
+                  {% endif %}
+                  {% if product.price_value %}
+                  <table style="border-collapse: collapse; width: auto;">
+                    <tr>
+                      <!-- font-size:12px => ~4.23mm; padding-bottom:6px => 2.12mm; padding-right:8px => 2.82mm -->
+                    
+                      <td style="vertical-align: middle; font-size: 4.23mm; font-weight: 700; color: rgba(0, 0, 0, 0.87); text-align: left; padding-bottom: 2.12mm; padding-right: 2.82mm;">
+                        {{ product.price_currency }}{{ product.price_value }}
+                      </td>
+                      
+                      <!-- font-size:11px => ~3.88mm; padding-bottom:6px => 2.12mm -->
+                      <td style="vertical-align: middle; font-size: 3.88mm; font-weight: 400; color: #676D77; text-align: left; padding-bottom: 2.12mm;">
+                        {% if product.moq %}
+                        (MOQ-{{ product.moq }})
+                        {% endif %}
+                      </td>
+                    </tr>
+                  </table>
+                  {% endif %}
+                  {% if product.hinge_attributes %}
+                  <div class="chip-container">
+                    {% for attribute in product.hinge_attributes %}
+                    <span class="chip" style="font-size: 3.88mm; font-weight: 400;">
+                      {{ attribute.value }}
+                    </span>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                </td>
+              </tr>
+            </table>
+            <!-- font-size:14px => ~4.94mm (if used), but row has inline 11px => 3.88mm -->
+            <table style="width: 100%; border-collapse: collapse; font-size: 4.94mm; color: #4F555E;">
+              <tbody>
+                {% for attribute in product.product_attributes %}
+                {% if attribute.value %}
+                <tr>
+                  <!-- font-size:11px => 3.88mm; padding-bottom:4px => 1.41mm -->
+                  <td style="width: 20%; font-size: 3.88mm; font-weight: 400; color: #676D77; line-height: normal; padding-bottom: 1.41mm;">
+                    {{ attribute.name }}
+                  </td>
+                  <td style="width: 80%; font-size: 3.88mm; font-weight: 400; color: #25282D; line-height: normal; padding-bottom: 1.41mm;">
+                    {% if attribute.value.startswith("https://") %}
+                    <a href="{{ attribute.value }}" target="_blank">{{ attribute.value }}</a>
+                    {% else %}
+                    {{ attribute.value }}
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </td>
+          {% endfor %}
+          {% if product_row|length == 1 %}
+          <td style="width: 50%;"></td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </table>
+      {% if not loop.last %}
+      <div style="page-break-after: always;"></div>
+      {% endif %}
+      {% endfor %}
+    </main>
+  </div>
+</body>
+</html>

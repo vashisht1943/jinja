@@ -1,0 +1,696 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+</head>
+
+<style>
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Satoshi', sans-serif;
+    }
+
+    table {
+        width: 50%;
+        border-collapse: collapse;
+        
+    }
+
+    th,
+    td {
+        text-align: left;
+        vertical-align: top;
+    }
+
+    header {
+        border-bottom: 1px solid #0000001F;
+    }
+
+    footer {
+        background-color: #EEF1F7;
+        padding: 5px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .divider {
+        border: 1px dashed #B5BBC3;
+        margin: 16px 0;
+    }
+
+    .header-divider {
+        border: 1px solid #B5BBC3;
+        margin: 2px 0;
+    }
+
+    .chip {
+        background-color: #F2F4F7;
+        border-radius: 3px;
+        color: #4F555E;
+    }
+
+    .availability {
+        display: flex;
+        gap: 5px;
+        background-color: #F2F6E7;
+        padding: 3px 8px;
+        align-items: center;
+        border-radius: 44px;
+    }
+
+    .green-dot {
+        height: 8px;
+        width: 8px;
+        background-color: #7DA50E;
+        border-radius: 50%;
+    }
+    .chip {
+        padding: 3px 4px;
+        background-color: #F2F4F7;
+        border-radius: 3px;
+        font-size: 15px;
+        color: #4F555E;
+        display: inline-block;
+        
+    }
+</style>
+
+<body>
+    
+    <!-- Main Container -->
+    <div>
+        <!-- Header -->
+
+        <main style="padding-left: 16px; padding-right: 16.2;">
+            
+            <table style="width: 100%; border-collapse: collapse; text-align: center; ">
+                
+                <tr style="margin-bottom: 20px;">
+                    
+                    <td style="width: 0%; padding: 5px;">
+                        <table style="width: 50%; border-collapse: collapse;">
+                            
+                            <tr>
+                                <td style="width: 40%; height: 165px ; vertical-align: top; position: relative; padding-bottom: 10px;">
+                                    <div style="position: relative; display: inline-block; width: 275px;">
+                                        <!-- Available Chip -->
+                                        <div
+                                            style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 16px; display: flex; align-items: center; line-height: 14.85px; overflow: hidden;">
+                                            <span
+                                                style="width: 8px; height: 8px; background: #7DA50E; border-radius: 50%; display: inline-block; margin-right: 6px; "></span>
+                                            Available: 994 units
+                                        </div>
+
+                                        <!-- Product Image -->
+                                        <img src="https://fileserver-g-pp.sourcerer.tech/files/5f40da35-df71-4997-a4d7-92d4f6c0fc08?quality=50&transforms=%5B%5B%22resize%22%2C%7B%22width%22%3A300%2C%22height%22%3A300%2C%22background%22%3A%22white%22%2C%22fit%22%3A%22contain%22%7D%5D%5D" alt="Product Image"
+                                            onerror="this.onerror=null; this.src= 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg'; "
+                                            style="width: 100%; height: 184.981px; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray; display: block;">
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 100%; box-sizing: border-box;">
+                                    
+                                    <p style="font-size:11px; font-weight:400; color:#676D77; margin-bottom: 6px; line-height: 14.85px; ">
+                                        OA-2C-80.5436
+                                    </p>
+                                    
+                                    <h2
+                                        style="font-size:12px; font-weight:700; color: #000000DE; margin-bottom: 6px; line-height: 16.2px;">
+                                        York Square Arm Upholstered Sofa
+                                    </h2>
+
+                                    <table style="border-collapse: collapse; border-spacing: 0; width: fit-content; margin-bottom: 6px;">
+                                        <tr>
+                                            <td style="font-size: 11px; color: #4F555E; padding: 0; padding-right: 6px; white-space: nowrap; font-weight: 400; line-height: 14.85px;">
+                                                Venice
+                                            </td>
+                                            <td style="font-size: 12px; color: #4F555E; padding: 0px; font-weight: 400; line-height: 16.2px;">
+                                                &#8226;
+                                            </td>
+                                            <td style="font-size: 11px; color: #4F555E; padding: 0; white-space: nowrap; padding-left: 6px; font-weight: 400; line-height: 14.85px;">
+                                                Contemporary
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div style="padding-bottom: 6px;">
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                           Oat
+                                        </div>
+                                        
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                            80.5 Inch
+                                        </div>
+                                        
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; ">
+                                            2 Cushions
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <table
+                                        style=" border-collapse: collapse; margin-bottom: 6px; width: fit-content;">
+                                        <tr>
+                                            <!-- Price -->
+                                            
+                                            <td
+                                                style="font-size: 12px; font-weight: 700; color: #000000DE; padding-right: 10px;">
+                                                $2159.00
+                                            </td>
+                                            
+                                            <!-- MOQ -->
+                                            
+                                            <td
+                                                style="font-size: 11px; font-weight: 400; color: #4F555E;">
+                                                (MOQ-15)
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <table
+                            style="width: 100%; border-collapse: collapse; ">
+                            <tbody>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; ">
+                                        Color
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; ">
+                                        Oat
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px;">
+                                        Size
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px;">
+                                        W : 80.5 
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77;">
+                                        Dimension
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; ">
+                                        W : 60.5 X D : 38.5 X H : 35 Inch
+                                    </td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </td>
+
+                    <td style="width: 0%; padding: 5px;">
+                        <table style="width: 50%; border-collapse: collapse;">
+                            
+                            <tr>
+                                <td style="width: 40%; height: 165px ; vertical-align: top; position: relative; padding-bottom: 10px;">
+                                    <div style="position: relative; display: inline-block; width: 275px;">
+                                        <!-- Available Chip -->
+                                        <div
+                                            style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 16px; display: flex; align-items: center; line-height: 14.85px; overflow: hidden;">
+                                            <span
+                                                style="width: 8px; height: 8px; background: #7DA50E; border-radius: 50%; display: inline-block; margin-right: 6px; "></span>
+                                            Available: 994 units
+                                        </div>
+
+                                        <!-- Product Image -->
+                                        <img src="https://fileserver-g-pp.sourcerer.tech/files/5f40da35-df71-4997-a4d7-92d4f6c0fc08?quality=50&transforms=%5B%5B%22resize%22%2C%7B%22width%22%3A300%2C%22height%22%3A300%2C%22background%22%3A%22white%22%2C%22fit%22%3A%22contain%22%7D%5D%5D" alt="Product Image"
+                                            onerror="this.onerror=null; this.src= 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg'; "
+                                            style="width: 100%; height: 184.981px; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray; display: block;">
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 100%; box-sizing: border-box;">
+                                    
+                                    <p style="font-size:11px; font-weight:400; color:#676D77; margin-bottom: 6px; line-height: 14.85px; ">
+                                        OA-2C-80.5436
+                                    </p>
+                                    
+                                    <h2
+                                        style="font-size:12px; font-weight:700; color: #000000DE; margin-bottom: 6px; line-height: 16.2px;">
+                                        York Square Arm Upholstered Sofa
+                                    </h2>
+
+                                    <table style="border-collapse: collapse; border-spacing: 0; width: fit-content; margin-bottom: 6px;">
+                                        <tr>
+                                            <td style="font-size: 11px; color: #4F555E; padding: 0; padding-right: 6px; white-space: nowrap; font-weight: 400; line-height: 14.85px;">
+                                                Venice
+                                            </td>
+                                            <td style="font-size: 12px; color: #4F555E; padding: 0px; font-weight: 400; line-height: 16.2px;">
+                                                &#8226;
+                                            </td>
+                                            <td style="font-size: 11px; color: #4F555E; padding: 0; white-space: nowrap; padding-left: 6px; font-weight: 400; line-height: 14.85px;">
+                                                Contemporary
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div style="padding-bottom: 6px;">
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                           Oat
+                                        </div>
+                                        
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                            80.5 Inch
+                                        </div>
+                                        
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; ">
+                                            2 Cushions
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <table
+                                        style=" border-collapse: collapse; margin-bottom: 6px; width: fit-content;">
+                                        <tr>
+                                            <!-- Price -->
+                                            
+                                            <td
+                                                style="font-size: 12px; font-weight: 700; color: #000000DE; padding-right: 10px;">
+                                                $2159.00
+                                            </td>
+                                            
+                                            <!-- MOQ -->
+                                            
+                                            <td
+                                                style="font-size: 11px; font-weight: 400; color: #4F555E;">
+                                                (MOQ-15)
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <table
+                            style="width: 100%; border-collapse: collapse; ">
+                            <tbody>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px; padding-bottom: 6px; padding-right: 48px;">
+                                        Color
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px; padding-bottom: 6px;">
+                                        Oat
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px;padding-bottom: 6px; padding-right: 48px;">
+                                        Size
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px;padding-bottom: 6px; ">
+                                        W : 80.5 Inch
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px; padding-right: 48px; ">
+                                        Dimension
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px;">
+                                        W : 60.5 X D : 38.5 X H : 35 Inch
+                                    </td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </td>
+
+                    
+                </tr>
+
+                <tr style="margin-bottom: 20px;">
+                    
+                    <td style="width: 0%; padding: 5px;">
+                        <table style="width: 50%; border-collapse: collapse;">
+                            
+                            <tr>
+                                <td style="width: 40%; height: 165px ; vertical-align: top; position: relative; padding-bottom: 10px;">
+                                    <div style="position: relative; display: inline-block; width: 275px;">
+                                        <!-- Available Chip -->
+                                        <div
+                                            style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 16px; display: flex; align-items: center; line-height: 14.85px; overflow: hidden;">
+                                            <span
+                                                style="width: 8px; height: 8px; background: #7DA50E; border-radius: 50%; display: inline-block; margin-right: 6px; "></span>
+                                            Available: 994 units
+                                        </div>
+
+                                        <!-- Product Image -->
+                                        <img src="https://fileserver-g-pp.sourcerer.tech/files/5f40da35-df71-4997-a4d7-92d4f6c0fc08?quality=50&transforms=%5B%5B%22resize%22%2C%7B%22width%22%3A300%2C%22height%22%3A300%2C%22background%22%3A%22white%22%2C%22fit%22%3A%22contain%22%7D%5D%5D" alt="Product Image"
+                                            onerror="this.onerror=null; this.src= 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg'; "
+                                            style="width: 100%; height: 184.981px; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray; display: block;">
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 100%; box-sizing: border-box;">
+                                    
+                                    <p style="font-size:11px; font-weight:400; color:#676D77; margin-bottom: 6px; line-height: 14.85px; ">
+                                        OA-2C-80.5436
+                                    </p>
+                                    
+                                    <h2
+                                        style="font-size:12px; font-weight:700; color: #000000DE; margin-bottom: 6px; line-height: 16.2px;">
+                                        York Square Arm Upholstered Sofa
+                                    </h2>
+
+                                    <table style="border-collapse: collapse; border-spacing: 0; width: fit-content; margin-bottom: 6px;">
+                                        <tr>
+                                            <td style="font-size: 11px; color: #4F555E; padding: 0; padding-right: 6px; white-space: nowrap; font-weight: 400; line-height: 14.85px;">
+                                                Venice
+                                            </td>
+                                            <td style="font-size: 12px; color: #4F555E; padding: 0px; font-weight: 400; line-height: 16.2px;">
+                                                &#8226;
+                                            </td>
+                                            <td style="font-size: 11px; color: #4F555E; padding: 0; white-space: nowrap; padding-left: 6px; font-weight: 400; line-height: 14.85px;">
+                                                Contemporary
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div style="padding-bottom: 6px;">
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                           Oat
+                                        </div>
+                                        
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                            80.5 Inch
+                                        </div>
+                                        
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; ">
+                                            2 Cushions
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <table
+                                        style=" border-collapse: collapse; margin-bottom: 6px; width: fit-content;">
+                                        <tr>
+                                            <!-- Price -->
+                                            
+                                            <td
+                                                style="font-size: 12px; font-weight: 700; color: #000000DE; padding-right: 10px;">
+                                                $2159.00
+                                            </td>
+                                            
+                                            <!-- MOQ -->
+                                            
+                                            <td
+                                                style="font-size: 11px; font-weight: 400; color: #4F555E;">
+                                                (MOQ-15)
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <table
+                            style="width: 100%; border-collapse: collapse; ">
+                            <tbody>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px; padding-bottom: 6px; padding-right: 48px;">
+                                        Color
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px; padding-bottom: 6px;">
+                                        Oat
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px;padding-bottom: 6px; padding-right: 48px;">
+                                        Size
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px;padding-bottom: 6px; ">
+                                        W : 80.5 Inch
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px; padding-right: 48px; ">
+                                        Dimension
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px;">
+                                        W : 60.5 X D : 38.5 X H : 35 Inch
+                                    </td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </td>
+
+                    <td style="width: 0%; padding: 5px;">
+                        <table style="width: 50%; border-collapse: collapse;">
+                            
+                            <tr>
+                                <td style="width: 40%; height: 165px ; vertical-align: top; position: relative; padding-bottom: 10px;">
+                                    <div style="position: relative; display: inline-block; width: 275px;">
+                                        <!-- Available Chip -->
+                                        <div
+                                            style="position: absolute; top: 8px; left: 8px; background: #F2F6E7; color: #4F555E; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 16px; display: flex; align-items: center; line-height: 14.85px; overflow: hidden;">
+                                            <span
+                                                style="width: 8px; height: 8px; background: #7DA50E; border-radius: 50%; display: inline-block; margin-right: 6px; "></span>
+                                            Available: 994 units
+                                        </div>
+
+                                        <!-- Product Image -->
+                                        <img src="https://fileserver-g-pp.sourcerer.tech/files/5f40da35-df71-4997-a4d7-92d4f6c0fc08?quality=50&transforms=%5B%5B%22resize%22%2C%7B%22width%22%3A300%2C%22height%22%3A300%2C%22background%22%3A%22white%22%2C%22fit%22%3A%22contain%22%7D%5D%5D" alt="Product Image"
+                                            onerror="this.onerror=null; this.src= 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg'; "
+                                            style="width: 100%; height: 184.981px; object-fit: contain; border-radius: 8px; padding: 3px; border: 1px solid lightgray; display: block;">
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 100%; box-sizing: border-box;">
+                                    
+                                    <p style="font-size:11px; font-weight:400; color:#676D77; margin-bottom: 6px; line-height: 14.85px; ">
+                                        OA-2C-80.5436
+                                    </p>
+                                    
+                                    <h2
+                                        style="font-size:12px; font-weight:700; color: #000000DE; margin-bottom: 6px; line-height: 16.2px;">
+                                        York Square Arm Upholstered Sofa
+                                    </h2>
+
+                                    <table style="border-collapse: collapse; border-spacing: 0; width: fit-content; margin-bottom: 6px;">
+                                        <tr>
+                                            <td style="font-size: 11px; color: #4F555E; padding: 0; padding-right: 6px; white-space: nowrap; font-weight: 400; line-height: 14.85px;">
+                                                Venice
+                                            </td>
+                                            <td style="font-size: 12px; color: #4F555E; padding: 0px; font-weight: 400; line-height: 16.2px;">
+                                                &#8226;
+                                            </td>
+                                            <td style="font-size: 11px; color: #4F555E; padding: 0; white-space: nowrap; padding-left: 6px; font-weight: 400; line-height: 14.85px;">
+                                                Contemporary
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div style="padding-bottom: 6px;">
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                           Oat
+                                        </div>
+                                        
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; padding-right: 4px;">
+                                            80.5 Inch
+                                        </div>
+                                        
+                                        <div
+                                        class="chip" style=" font-size: 11px; line-height: 14.85px; ">
+                                            2 Cushions
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <table
+                                        style=" border-collapse: collapse; margin-bottom: 6px; width: fit-content;">
+                                        <tr>
+                                            <!-- Price -->
+                                            
+                                            <td
+                                                style="font-size: 12px; font-weight: 700; color: #000000DE; padding-right: 10px;">
+                                                $2159.00
+                                            </td>
+                                            
+                                            <!-- MOQ -->
+                                            
+                                            <td
+                                                style="font-size: 11px; font-weight: 400; color: #4F555E;">
+                                                (MOQ-15)
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <table
+                            style="width: 100%; border-collapse: collapse; ">
+                            <tbody>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px; padding-bottom: 6px; padding-right: 48px;">
+                                        Color
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px; padding-bottom: 6px;">
+                                        Oat
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px;padding-bottom: 6px; padding-right: 48px;">
+                                        Size
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px;padding-bottom: 6px; ">
+                                        W : 80.5 Inch
+                                    </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <!-- Attribute Name -->
+                                    <td
+                                        style=" width: 20%; font-size: 11px; font-weight: 400; color: #676D77; line-height: 15px; padding-right: 48px; ">
+                                        Dimension
+                                    </td>
+                                    <!-- Attribute Value -->
+                                    <td
+                                        style=" width: 80%; font-size: 11px; font-weight: 400; color: #25282D; line-height: 15px;">
+                                        W : 60.5 X D : 38.5 X H : 35 Inch
+                                    </td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </td>
+
+                    
+                </tr>
+
+            </table>
+
+            <div style="page-break-after: always;"></div>
+            
+        </main>
+
+    </div>
+</body>
+
+<style type="text/css">
+    .avoid {
+        page-break-inside: avoid !important;
+        margin: 4px 0 4px 0;
+    }
+</style>
