@@ -22,7 +22,6 @@
             border-collapse: collapse;
         }
         td {
-            padding: 5px 10px;
             vertical-align: middle;
         }
         .left {
@@ -51,7 +50,17 @@
                     elements[i].textContent = value;
                 }
             }
+
+            function formatPageNumber(pageNumber) {
+                return ('0' + pageNumber).slice(-2);
+            }
             ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'].forEach(substitute);
+
+            var pageNumberElement = document.querySelector('.page');
+            var pageNumber = getParameterByName('page');
+            if (pageNumber && pageNumberElement) {
+                pageNumberElement.textContent = formatPageNumber(pageNumber);
+            }
         }
     </script>
 </head>
@@ -62,14 +71,14 @@
         <footer style="background-color: #EEF1F7; padding: 5px 0;">
             <table style="width: 100%; border-collapse: collapse;">
                 <tr>
-                    <td style="text-align: left; padding: 0px 10px;">
+                    <td style="text-align: left; padding-left: 16px;">
                         <a href="{{ website }}" style="color: #4F555E; font-size: 10px; font-weight: 400; text-decoration: none;">
                             {{ website }}
                         </a>
                     </td>
-                    <td style="text-align: right; padding: 0px 10px;">
+                    <td style="text-align: right; padding-right: 16px;">
                         <p style="color: #4F555E; font-size: 10px; font-weight: 700; margin: 0;">
-                            Page <span class="page"></span> of <span class="topage"></span>
+                            <span class="page">
                         </p>
                     </td>
                 </tr>
