@@ -21,6 +21,8 @@
     table {
       width: 50%;
       border-collapse: collapse;
+      table-layout: fixed;
+      page-break-inside: avoid;
     }
     th,
     td {
@@ -46,7 +48,6 @@
       margin: 0.70mm 0;
     }
     .availability {
-      display: flex;
       gap: 1.76mm;
       background-color: #F2F6E7;
       padding: 1.06mm 2.82mm;
@@ -84,9 +85,11 @@
   {% set year, month, day = date_part.split('-') %}
   {{ month }}/{{ day }}/{{ year }}
   {% endmacro %}
-  <div>
+  
     <main style="padding-left: 5.65mm; padding-right: 1.41mm; padding-top: 4.23mm;">
+      <div style="margin: 0cm 1cm;">
       {% for product_group in products|batch(4) %}
+      <div>
       <table style="width: 100%; border-collapse: collapse; text-align: center;">
         {% for product_row in product_group|batch(2) %}
         <tr>
@@ -97,13 +100,13 @@
                 <td>
                   <div style="padding-bottom: 3.53mm;">
                     <div style="position: relative; width: 100%; border-radius: 2.82mm; border: 0.35mm solid lightgray; overflow: hidden;">
-                      <div style="width: 100%; height: 68.22mm;">
-                        <div style="width: 100%; height: 100%; background: transparent;">
+                      <div style="width: 100%; height: 68.22mm; display: table; text-align: center;">
+                        <div style="display: table-cell; vertical-align: middle; width: 100%; height: 100%;">
                           <img
                             src="{{ product.product_image_1 if product.product_image_1 else 'https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg' }}"
                             alt="Product Image"
                             onerror="this.onerror=null; this.src='https://frontend-bucket.vercel.app/images/store_front_img_not_found.svg';"
-                            style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: auto;"
+                            style="max-width: 100%; max-height: 100%; object-fit: contain; display: inline-block;"
                           >
                         </div>
                       </div>
@@ -113,6 +116,7 @@
                         <span style="vertical-align: middle;">Available: {{ product.inventory.total_available | int }} units</span>
                       </div>
                       {% endif %}
+                    
                     </div>
                   </div>
                 </td>
@@ -211,7 +215,9 @@
       <div style="page-break-after: always;"></div>
       {% endif %}
       {% endfor %}
+      </div>
+    </div>
     </main>
-  </div>
+  
 </body>
 </html>
