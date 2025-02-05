@@ -90,8 +90,9 @@
       <div style="margin: 0cm 1cm;">
       {% for product_group in products|batch(4) %}
       <div>
-      <table style="width: 100%; border-collapse: collapse; text-align: center;">
         {% for product_row in product_group|batch(2) %}
+        <div style="min-height: 13cm;">
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
         <tr>
           {% for product in product_row %}
           <td style="width: 50%; padding-bottom: 7.06mm; padding-right: 4.23mm;">
@@ -208,8 +209,9 @@
           <td style="width: 50%;"></td>
           {% endif %}
         </tr>
-        {% endfor %}
       </table>
+    </div>
+        {% endfor %}
 
       {% if not loop.last %}
       <div style="page-break-after: always;"></div>
